@@ -1,13 +1,16 @@
-
 import './App.css'
-
+import Sidabar from './components/Sidebar'
 function App() {
 
-
   return (
-    <>
-      <h1>HELLO THIS A FRONT END</h1>
-    </>
+   <div className='flex flex-row'>
+      <Sidabar/>
+      <main>
+        <h1 className="text-3xl font-bold underline">
+          Hello world!
+        </h1>
+      </main>
+   </div>
   )
 }
 
