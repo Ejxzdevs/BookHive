@@ -1,16 +1,17 @@
 import {useState} from 'react'
+import { NavLink } from 'react-router-dom'
 
 interface Menu {
     name: string;
     icon: string;
+    path: string;
   }
   
-
 const Menus: Menu[] = [
-    { name: 'Dashborad', icon: 'A' },
-    { name: 'Books', icon: 'A' },
-    { name: 'Settings', icon: 'A' },
-    { name: 'Logout', icon: 'A' }
+    { name: 'Dashborad', icon: 'A', path: '/' },
+    { name: 'Books', icon: 'A' , path: '/product' },
+    { name: 'Settings', icon: 'A' , path: '/' },
+    { name: 'Logout', icon: 'A' , path: '/' }
   ];
 
 const Sidebar : React.FC = () => {
@@ -27,8 +28,12 @@ const Sidebar : React.FC = () => {
                 {Menus.map((menu,index)=> {
                     return (
                     <li className='border p-4 flex gap-2' key={index}>
-                        <p>{menu.icon}</p>
-                        <span className={`${open ? "block" : "hidden" }`} >{menu.name}</span>      
+                        <NavLink to={menu.path} >
+                          <p>{menu.icon}</p>
+                          <span className={`${open ? "block" : "hidden" }`} >
+                            {menu.name}
+                          </span> 
+                        </NavLink>     
                      </li>
                     )
                 })}
