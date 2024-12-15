@@ -6,7 +6,7 @@ const cors = require('cors');
 app.use(express.json());
 app.use(cors());
 
-// BOOKS ROUTES
+// ROUTES
 app.use('/books', bookRoutes);
 
 app.listen(8080, () => {
