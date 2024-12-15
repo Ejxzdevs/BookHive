@@ -1,24 +1,22 @@
-import './App.css'
-import Sidebar from './components/Sidebar'
-import Dashboard from './pages/dashboard'
-import Product from './pages/product'
-import {Routes , Route } from 'react-router-dom'
+import './App.css';
+import Sidebar from './components/Sidebar';
+import Dashboard from './pages/dashboard';
+import Product from './pages/product';
+import { Routes, Route } from 'react-router-dom';
+import { Box } from '@mui/material';
+
 function App() {
-  
   return (
-   <div className='flex flex-row'>
-      <Sidebar/>
-      <main>
-        <h1 className="text-3xl font-bold underline">
-          Hello world!
-        </h1>
+    <Box className="flex flex-row" sx={{ padding: 0, margin: 0 }}>
+      <Sidebar /> 
+      <Box sx={{ flexGrow: 1 }}>
         <Routes>
-            <Route path='/' element={<Dashboard/> }/>
-            <Route path='/product' element={<Product/> }/> 
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/product" element={<Product />} />
         </Routes>
-      </main>
-   </div>
-  )
+      </Box>
+    </Box>
+  );
 }
 
-export default App
+export default App;
