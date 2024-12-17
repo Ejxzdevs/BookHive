@@ -1,4 +1,3 @@
-// controllers/bookController.js
 const BookModel = require('../models/bookModel');
 
 class BookController {
