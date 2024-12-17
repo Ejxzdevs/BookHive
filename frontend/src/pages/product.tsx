@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from '@mui/material/Container';
 import TableData from '../components/tables/TableData';
+import AddBook from '../components/forms/AddBook';
 
 interface Book {
   book_id: number;
@@ -29,6 +30,7 @@ const Product: React.FC = () => {
 
   return (
     <Container>
+      <AddBook/>
       <TableData headers={headers} data={books} />
     </Container>
   );
