@@ -1,20 +1,28 @@
 const BookModel = require('../models/bookModel');
 
-// GET ALL BOOKS
-const getBooks = (req, res) => {
-    BookModel.getAllBooks((err, data) => 
-      err ? res.status(500).json({ error: err.message }) : res.json(data)
-    );
+class BookController {
+  // GET ALL BOOKS
+  getBooks = async (req, res) => {
+    try {
+      const data = await BookModel.getAllBooks();
+      res.json(data); 
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
   };
 
-// ADD NEW BOOK
-const addBook = (req, res) => {
-  const { book_title, book_description } = req.body;
-  const newBook = { book_title, book_description };
+  // ADD NEW BOOK
+  addBook = async (req, res) => {
+    const { book_title, book_description } = req.body;
+    const newBook = { book_title, book_description };
 
-  BookModel.insertBook(newBook, (err, result) => 
-    err ? res.status(500).json({ error: err.message }) : res.status(201).json({ message: 'Book added successfully', result })
-  );
-};
+    try {
+      const result = await BookModel.insertBook(newBook);
+      res.status(201).json({ message: 'Book added successfully', result });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
+}
 
-module.exports = { getBooks, addBook };
+module.exports = new BookController();

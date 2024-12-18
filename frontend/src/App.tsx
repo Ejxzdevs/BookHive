@@ -1,14 +1,23 @@
+import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import { Box } from '@mui/material';
+import EnduserHome from './pages/EnduserHome';
+import EnduserAbout from './pages/EnduserAbout';
+import Navigation from "./components/Navigation";
 
-import './App.css'
 
 function App() {
-
-
   return (
-    <>
-      <h1>HELLO THIS A FRONT END</h1>
-    </>
-  )
+    <Box className="flex flex-col" sx={{ padding: 0, margin: 0 }}>
+      <Navigation/>
+      <Box sx={{ flexGrow: 1 }}>
+        <Routes>
+          <Route path="/" element={<EnduserHome />} />
+          <Route path="/About" element={<EnduserAbout />} />
+        </Routes>
+      </Box>
+    </Box>
+  );
 }
 
-export default App
+export default App;

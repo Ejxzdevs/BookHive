@@ -1,2 +1,10 @@
+<<<<<<< HEAD
 .env
 node_modules
+=======
+# Ignore node_modules folder
+node_modules
+
+# Ignore .env file (which contains sensitive data like DB credentials)
+.env
+>>>>>>> feature
