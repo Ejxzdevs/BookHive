@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 import EnduserHome from './pages/EnduserHome';
 import EnduserAbout from './pages/EnduserAbout';
 import Navigation from "./components/Navigation";
+import Footer from './components/Footer';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/About" element={<EnduserAbout />} />
         </Routes>
       </Box>
+    <Footer/>
     </Box>
   );
 }
