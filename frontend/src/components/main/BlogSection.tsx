@@ -12,7 +12,8 @@ const BlogSection = () => {
       </Grid>
       <Grid className="flex flex-col justify-center items-center gap-4 p-10 " size={{ xs: 12, md: 6 }}>
           <Typography variant="h4" color="initial">
-              The Role of Cataloging in Library Management Systems 
+              The Role of Cataloging in Library Management Systems  
+              
           </Typography>
           <Typography  variant="body2" color="initial">
               Cataloging is one of the key features of a Library Management System. The system organizes books and other resources by categories, such as author, genre, or subject, and assigns unique identifiers like ISBN codes. This allows both staff and users to quickly locate resources using search filters or keywords. Effective cataloging not only makes library resources easier to find but also helps libraries manage their inventory efficiently. An LMS ensures that items are classified consistently and updated when necessary
