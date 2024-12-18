@@ -15,7 +15,7 @@ const Menus: Menu[] = [
 
 const Navigation = () => {
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: '#19B37E' }}>
+    <AppBar className='h-[60px]' position="sticky" sx={{ backgroundColor: '#19B37E' }}>
       <Toolbar>
         {/* Logo or brand name */}
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
