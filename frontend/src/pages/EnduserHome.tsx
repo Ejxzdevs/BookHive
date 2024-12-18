@@ -1,9 +1,12 @@
-import Userhome from "../components/main/Userhome"
+import HeroSection from "../components/main/HeroSection"
 import { Box } from "@mui/material"
+import BlogSection from "../components/main/BlogSection"
+
 const enduserHome = () => {
   return (
-    <Box className="h-screen bg-slate-500" >
-      <Userhome/>
+    <Box className="h-auto flex flex-col " >
+      <HeroSection/>
+      <BlogSection/>
     </Box>
   )
 }
