@@ -1,11 +1,10 @@
 import { Box } from "@mui/material"
-import UserAbout from "../components/main/UserAbout"
-
+import AboutSection from "../components/main/AboutSection"
 
 const EnduserAbout = () => {
   return (
     <Box>
-      <UserAbout/>
+      <AboutSection/>
     </Box>
   )
 }
