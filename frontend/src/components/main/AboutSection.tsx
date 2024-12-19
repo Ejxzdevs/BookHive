@@ -7,7 +7,7 @@ const AboutSection = () => {
   return (
     <Box className="h-auto flex flex-col ">
       <Box className="
-      relative h-[300px] sm:h-[200px] bg-cover bg-center py-32 px-20 "
+      relative h-[200px] sm:h-[150px] bg-cover bg-center py-32 px-20 "
         sx={{
           backgroundImage: `url(${LibraryImage})`,
         }} >
