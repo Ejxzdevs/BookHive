@@ -5,7 +5,7 @@ import BlogImage from '../../assets/Blog.jpg';
 
 const BlogSection = () => {
   return (
-    <Box className="h-[70vh] sm:auto " sx={{ flexGrow: 1 }}>
+    <Box className="h-auto " sx={{ flexGrow: 1 }}>
     <Grid sx={{ height: '100%'}} container spacing={2}>
       <Grid className="flex justify-center items-center p-10" size={{ xs: 12, md: 6 }}>
           <img src={BlogImage} alt="Blog Image" className="min-w-[300px] min-h-[200px] max-h-[270px] sm:mt-6 shadow-md rounded" />

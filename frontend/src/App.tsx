@@ -9,15 +9,15 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <Box className="flex flex-col" sx={{ padding: 0, margin: 0 }}>
+    <Box>
       <Navigation/>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box>
         <Routes>
           <Route path="/" element={<EnduserHome />} />
           <Route path="/About" element={<EnduserAbout />} />
         </Routes>
       </Box>
-    <Footer/>
+      <Footer/>
     </Box>
   );
 }
