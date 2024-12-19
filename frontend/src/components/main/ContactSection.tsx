@@ -18,7 +18,7 @@ const ContactSection = () => {
   // Set up the form with react-hook-form and integrate zodResolver for validation
   const { register, handleSubmit, formState: { errors }, } = useForm<InquiryFormData>({ resolver: zodResolver(inquirySchema),});
 
-  // submit
+  // Handle Submit
   const onSubmit: SubmitHandler<InquiryFormData> = (data) => {
     console.log("Form submitted with data: ", data);
   };
