@@ -4,7 +4,7 @@ import BlogSection from "../components/main/BlogSection"
 
 const enduserHome = () => {
   return (
-    <Box className="h-auto flex flex-col " >
+    <Box >
       <HeroSection/>
       <BlogSection/>
     </Box>
