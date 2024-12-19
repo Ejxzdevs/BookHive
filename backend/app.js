@@ -1,5 +1,6 @@
 const express = require('express');
 const bookRoutes = require('./routes/bookRoutes');
+const inquiryRoutes = require('./routes/inquiryRoutes')
 const app = express();
 const cors = require('cors');
 
@@ -8,6 +9,7 @@ app.use(cors());
 
 // ROUTES
 app.use('/books', bookRoutes);
+app.use('/inquiries', inquiryRoutes);
 
 app.listen(8080, () => {
   console.log("Server is running on http://localhost:8080/");
