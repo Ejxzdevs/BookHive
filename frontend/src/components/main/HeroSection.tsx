@@ -6,7 +6,7 @@ const HeroSection = () => {
     <Box className="
     relative h-auto bg-cover bg-center py-32 px-5 
     sm:h-auto 
-    md:h-[100vh] 
+    md:h-auto
     md:flex
     md:items-center
     md:justify-center
