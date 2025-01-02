@@ -77,7 +77,7 @@ const ContactSection = () => {
             error={!!errors.message}
             helperText={errors.message?.message}
           />
-          <Button type="submit" variant="contained" color="primary" fullWidth>
+          <Button type="submit" variant="contained" fullWidth sx={{ backgroundColor: '#19B37E' }} >
             Submit
           </Button>
         </form>

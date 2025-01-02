@@ -8,3 +8,10 @@ export const inquirySchema = z.object({
 });
 
 export type InquiryFormData = z.infer<typeof inquirySchema>;
+
+export const LoginSchema = z.object({
+  user_email: z.string().email("Invalid email format").min(1, "Email is required"),
+  user_password: z.string().min(1, "Password is required")
+})
+
+export type LoginFormData = z.infer<typeof LoginSchema>;
