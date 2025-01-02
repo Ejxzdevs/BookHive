@@ -1,26 +1,34 @@
 import { Box, Typography, Button, TextField } from '@mui/material';
 import LibraryImage from '../../assets/Library.jpg';
-import z from 'zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { inquirySchema, InquiryFormData } from '../../utils/formSchema'
+import { postInquiry } from '../../services/contactApi';
 
-// Define your Zod schema for validation
-const inquirySchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email format").min(1, "Email is required"),
-  message: z.string().min(1, "Message is required"),
-});
 
-// Define the TypeScript type based on the Zod schema
-type InquiryFormData = z.infer<typeof inquirySchema>;
 
 const ContactSection = () => {
   // Set up the form with react-hook-form and integrate zodResolver for validation
   const { register, handleSubmit, formState: { errors }, } = useForm<InquiryFormData>({ resolver: zodResolver(inquirySchema),});
+  // Handle form submission
+  const onSubmit: SubmitHandler<InquiryFormData> = async (data) => {
+    try {
+      console.log("Form submitted with data: ", data);
 
-  // Handle Submit
-  const onSubmit: SubmitHandler<InquiryFormData> = (data) => {
-    console.log("Form submitted with data: ", data);
+      // Call the API service to submit the inquiry
+      const response = await postInquiry({
+        inquiry_name: data.name,
+        inquiry_email: data.email,
+        inquiry_message: data.message,
+      });
+
+      console.log('Inquiry added successfully:', response);
+      // You can show a success message or reset the form here
+
+    } catch (error) {
+      console.error('Error submitting inquiry:', error);
+      // Handle the error, e.g., display an error message
+    }
   };
 
   return (
