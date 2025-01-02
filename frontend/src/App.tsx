@@ -9,30 +9,28 @@ import Footer from './components/Footer';
 import Login from './pages/login';
 import { useState } from 'react';
 
+type Role = 'admin' | 'user';
 
 function App() {
-  const [role , setRole] = useState(null);
+  const [role, setRole] = useState<Role>('user');
   
   return (
     <Box>
-       {role === null ? (
-         <Navigation /> 
-      ) : (
-        <div>  </div>
-      )}
+      {role === 'user' && window.location.pathname !== '/admin' ? (
+        <Navigation />
+      ) : null}
       <Box>
         <Routes>
           <Route path="/" element={<EnduserHome />} />
           <Route path="/About" element={<EnduserAbout />} />
           <Route path="/Contact" element={<EnduserContact />} />
-          <Route path="/login" element={<Login />} />
+          {/* Admin login route */}
+          <Route path="/admin" element={<Login />} />
         </Routes>
       </Box>
-      {role === null ? (
-           <Footer/>
-      ) : (
-        <div>  </div>
-      )}
+      {role === 'user' && window.location.pathname !== '/admin' ? (
+        <Footer />
+      ) : null}
     </Box>
   );
 }
