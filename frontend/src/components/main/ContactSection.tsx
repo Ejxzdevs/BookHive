@@ -5,16 +5,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { inquirySchema, InquiryFormData } from '../../utils/formSchema'
 import { postInquiry } from '../../services/contactApi';
 
-
-
 const ContactSection = () => {
-  // Set up the form with react-hook-form and integrate zodResolver for validation
   const { register, handleSubmit, formState: { errors }, } = useForm<InquiryFormData>({ resolver: zodResolver(inquirySchema),});
-  // Handle form submission
   const onSubmit: SubmitHandler<InquiryFormData> = async (data) => {
     try {
       console.log("Form submitted with data: ", data);
-
       // Call the API service to submit the inquiry
       const response = await postInquiry({
         inquiry_name: data.name,
@@ -23,11 +18,9 @@ const ContactSection = () => {
       });
 
       console.log('Inquiry added successfully:', response);
-      // You can show a success message or reset the form here
 
     } catch (error) {
       console.error('Error submitting inquiry:', error);
-      // Handle the error, e.g., display an error message
     }
   };
 
@@ -58,7 +51,6 @@ const ContactSection = () => {
           className="flex flex-col gap-5 border border-gray-500 h-auto w-[500px] rounded-md p-5"
           onSubmit={handleSubmit(onSubmit)}
         >
-          {/* Name Input */}
           <TextField
             id="name"
             label="Name"
@@ -67,7 +59,6 @@ const ContactSection = () => {
             error={!!errors.name}
             helperText={errors.name?.message}
           />
-          {/* Email Input */}
           <TextField
             id="email"
             label="Email"
@@ -76,7 +67,6 @@ const ContactSection = () => {
             error={!!errors.email}
             helperText={errors.email?.message}
           />
-          {/* Message Input */}
           <TextField
             id="message"
             label="Message"
@@ -87,7 +77,6 @@ const ContactSection = () => {
             error={!!errors.message}
             helperText={errors.message?.message}
           />
-          {/* Submit Button */}
           <Button type="submit" variant="contained" color="primary" fullWidth>
             Submit
           </Button>
