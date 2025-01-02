@@ -6,20 +6,33 @@ import EnduserAbout from './pages/EnduserAbout';
 import EnduserContact from './pages/EnduserContact';
 import Navigation from "./components/Navigation";
 import Footer from './components/Footer';
+import Login from './pages/login';
+import { useState } from 'react';
 
 
 function App() {
+  const [role , setRole] = useState(null);
+  
   return (
     <Box>
-      <Navigation/>
+       {role === null ? (
+         <Navigation /> 
+      ) : (
+        <div>  </div>
+      )}
       <Box>
         <Routes>
           <Route path="/" element={<EnduserHome />} />
           <Route path="/About" element={<EnduserAbout />} />
           <Route path="/Contact" element={<EnduserContact />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Box>
-      <Footer/>
+      {role === null ? (
+           <Footer/>
+      ) : (
+        <div>  </div>
+      )}
     </Box>
   );
 }
