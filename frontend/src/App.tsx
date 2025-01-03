@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
 import EnduserHome from './pages/EnduserHome';
 import EnduserAbout from './pages/EnduserAbout';
@@ -7,34 +7,40 @@ import EnduserContact from './pages/EnduserContact';
 import Navigation from "./components/Navigation";
 import Dashboard from './pages/dashboard';
 import Footer from './components/Footer';
-import Login from './pages/login';
-import { useState , useEffect } from 'react';
+import Login from './pages/Login';
+import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
 type Role = 'admin' | 'user';
 
 function App() {
   const [role, setRole] = useState<Role>('user');
+  const location = useLocation();  // Get the current location (path)
+
   useEffect(() => {
     const userRole = Cookies.get('userRole');
     setRole(userRole as Role || 'user');
   }, []);
+
+  const isNotAdminPage = location.pathname !== '/admin';
+
   return (
     <Box>
-      {role === 'user' ? (
+      {role === 'user' && isNotAdminPage ? (
         <Navigation />
       ) : null}
+
       <Box>
         <Routes>
           <Route path="/" element={<EnduserHome />} />
           <Route path="/About" element={<EnduserAbout />} />
           <Route path="/Contact" element={<EnduserContact />} />
-          {/* Admin login route */}
           <Route path="/admin" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Box>
-      {role === 'user' ? (
+      
+      {role === 'user' && isNotAdminPage ? (
         <Footer />
       ) : null}
     </Box>
