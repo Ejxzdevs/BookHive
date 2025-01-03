@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 const Login = () => {
-  const navigate = useNavigate();
+   const navigate = useNavigate();
    const { register, handleSubmit, formState: { errors }, } = useForm<LoginFormData>({ resolver: zodResolver(LoginSchema),});
    const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
       console.log(data)
@@ -16,7 +16,6 @@ const Login = () => {
               user_email: data.user_email,
               user_password: data.user_password,
       });
-      // navigate('/dashboard');
       console.log(response[0].user_role);
       if (response && response[0] && response[0].user_role) {
         const userRole = response[0].user_role;
