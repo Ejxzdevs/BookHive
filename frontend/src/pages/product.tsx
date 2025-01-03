@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Container from '@mui/material/Container';
 import TableData from '../components/tables/TableData';
-import AddBook from '../components/forms/AddBook';
+import Sidebar from '../components/Sidebar';
+import { Container, Box  } from "@mui/material"
+import Header from '../components/Header';
 
 interface Book {
   book_id: number;
@@ -29,9 +30,12 @@ const Product: React.FC = () => {
   },[]);
 
   return (
-    <Container>
-      <AddBook/>
-      <TableData headers={headers} data={books} />
+    <Container disableGutters maxWidth={false} className="h-[100vh] flex flex-row p-0 m-0">
+      <Sidebar/>
+      <Box className="flex flex-grow flex-col">
+        <Header/>
+        <TableData headers={headers} data={books} />
+      </Box>
     </Container>
   );
 };

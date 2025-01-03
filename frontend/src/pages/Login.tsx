@@ -8,9 +8,9 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 const Login = () => {
-   const navigate = useNavigate();
-   const { register, handleSubmit, formState: { errors }, } = useForm<LoginFormData>({ resolver: zodResolver(LoginSchema),});
-   const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
+  const navigate = useNavigate();
+  const { register, handleSubmit, formState: { errors }, } = useForm<LoginFormData>({ resolver: zodResolver(LoginSchema),});
+  const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
       console.log(data)
       const response = await userLogin({
               user_email: data.user_email,
@@ -24,6 +24,7 @@ const Login = () => {
         Cookies.set('userRole', userRole, { expires: 7, path: '' });
         console.log('Login successfully:', response);
         navigate('/dashboard');
+        window.location.reload();
       } else {
         console.error('Login failed: Response does not contain user data');
       }
