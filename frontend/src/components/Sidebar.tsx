@@ -26,7 +26,7 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <aside className={`${open ? "w-[230px]" : "w-[50px]"} duration-300 h-screen shadow-md border relative`}>
+    <aside className={`${open ? "w-[330px]" : "w-[50px]"} duration-300 h-screen shadow-md border relative`}>
       <header className='p-6 flex'>
         <h1>logo</h1>
         <button onClick={() => setOpen(!open)} className='absolute top-7 right-0 w-7 rounded-md bg-blue-600'>X</button>
