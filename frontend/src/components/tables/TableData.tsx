@@ -42,9 +42,9 @@ interface TableProps {
 
 const TableData: React.FC<TableProps> = ({ headers, data }) => {
   return (
-    <Container className="h-screen flex justify-center items-center">
+    <Container className="h-screen flex justify-center items-center m-0">
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <Table sx={{ minWidth: 600 }} aria-label="customized table">
           <TableHead>
             <TableRow>
               {headers.map((header, index) => {
