@@ -9,7 +9,7 @@ interface Menu {
 }
 
 const Menus: Menu[] = [
-  { name: 'Dashboard', icon: 'A', path: '/' },
+  { name: 'Dashboard', icon: 'A', path: '/dashboard' },
   { name: 'Books', icon: 'A', path: '/product' },
   { name: 'Settings', icon: 'A', path: '/' },
   { name: 'Logout', icon: 'A', path: '/' }
@@ -26,7 +26,7 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <aside className={`${open ? "w-[330px]" : "w-[50px]"} duration-300 h-screen shadow-md border relative`}>
+    <aside className={`${open ? "w-[250px]" : "w-[50px]"} duration-300 h-screen shadow-md border relative`}>
       <header className='p-6 flex'>
         <h1>logo</h1>
         <button onClick={() => setOpen(!open)} className='absolute top-7 right-0 w-7 rounded-md bg-blue-600'>X</button>
