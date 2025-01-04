@@ -13,8 +13,8 @@ class Book {
     }
 
     static async insertBook(book) {
-        const query = "INSERT INTO BOOKS (book_title, book_description, image_url) VALUES (?)";
-        const values = [book.book_title, book.book_description , book.image_url];
+        const query = "INSERT INTO BOOKS (book_title, book_description, genre , author, image_url) VALUES (?)";
+        const values = [book.book_title, book.book_description ,book.genre,book.author, book.image_url];
         try {
             const [result] = await connect.promise().query(query, [values]);
             return result;

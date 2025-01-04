@@ -43,6 +43,8 @@ function PopupExample() {
         const response = await insertBook({
           book_title: data.book_title,
           book_description: data.book_description,
+          genre: data.genre,
+          author: data.author,
           image_url: image,
         });
   
@@ -72,6 +74,20 @@ function PopupExample() {
                     {...register('book_title')}
                     error={!!errors.book_title}
                     helperText={errors.book_title?.message}
+             />
+             <TextField
+                    label="Book Genre"
+                    fullWidth
+                    {...register('genre')}
+                    error={!!errors.genre}
+                    helperText={errors.genre?.message}
+             />
+             <TextField
+                    label="Book Author"
+                    fullWidth
+                    {...register('author')}
+                    error={!!errors.author}
+                    helperText={errors.author?.message}
              />
              <TextField
                     label="description"
