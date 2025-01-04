@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle ,Box , TextField , Typography , Input } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle ,Box , TextField , Typography, Input } from '@mui/material';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { BookSchema, BookFormData } from '../../utils/formSchema'
 import { insertBook } from '../../services/bookApi';
+import CloseIcon from '@mui/icons-material/Close';
 
 function PopupExample() {
     const [open, setOpen] = useState(false);
@@ -58,12 +59,17 @@ function PopupExample() {
 
 
   return (
-    <div>
+    <Box>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Open Popup
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>New Book</DialogTitle>
+        <Box className="flex justify-end">
+          <Button className='left-0' onClick={handleClose} color="primary">
+            <CloseIcon/>
+          </Button>
+        </Box>
+        <DialogTitle className='text-center' >New Book</DialogTitle>
         <DialogContent>
           <form className='p-5 flex flex-col gap-5 w-[450px] ' 
             onSubmit={handleSubmit(onSubmit)} 
@@ -110,20 +116,15 @@ function PopupExample() {
                   <Box mt={2} display="flex" justifyContent="center">
                     <img src={preImage} alt="Book Cover Preview" style={{ maxWidth: '100%', maxHeight: '200px' }} />
                   </Box>
-                )}
-                  <Button type="submit" variant="contained" fullWidth sx={{ backgroundColor: '#19B37E' }} >
-            Submit
-          </Button>
+                )}<DialogActions>
+                    <Button type="submit" variant="contained" fullWidth sx={{ backgroundColor: '#19B37E' }} >
+                        Submit
+                    </Button>
+                </DialogActions>
           </form>
         </DialogContent>
-        <DialogActions>
-      
-          <Button onClick={handleClose} color="primary">
-            Close
-          </Button>
-        </DialogActions>
       </Dialog>
-    </div>
+    </Box>
   );
 }
 
