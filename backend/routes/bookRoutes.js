@@ -1,9 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const bookController = require('../controllers/bookController');
+const multer = require('multer');
 
-// Route to get all books
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage });
+
+// Route books
 router.get('/', bookController.getBooks);
-router.post('/add', bookController.addBook);
+router.post('/add', upload.single('image_url'), bookController.addBook);
 
 module.exports = router;
