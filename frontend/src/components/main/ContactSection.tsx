@@ -2,11 +2,11 @@ import { Box, Typography, Button, TextField } from '@mui/material';
 import LibraryImage from '../../assets/Library.jpg';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { inquirySchema, InquiryFormData } from '../../utils/formSchema'
+import { InquirySchema, InquiryFormData } from '../../utils/formSchema'
 import { postInquiry } from '../../services/contactApi';
 
 const ContactSection = () => {
-  const { register, handleSubmit, formState: { errors }, } = useForm<InquiryFormData>({ resolver: zodResolver(inquirySchema),});
+  const { register, handleSubmit, formState: { errors }, } = useForm<InquiryFormData>({ resolver: zodResolver(InquirySchema),});
   const onSubmit: SubmitHandler<InquiryFormData> = async (data) => {
     try {
       console.log("Form submitted with data: ", data);
