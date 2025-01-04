@@ -4,6 +4,7 @@ import TableData from '../components/tables/TableData';
 import Sidebar from '../components/Sidebar';
 import { Container, Box  } from "@mui/material"
 import Header from '../components/Header';
+import AddBook from '../components/modals/AddBook'
 
 interface Book {
   book_id: number;
@@ -22,7 +23,6 @@ const Product: React.FC = () => {
       .get('http://localhost:8080/books')
       .then((response) => {
         setBooks(response.data);
-        console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -32,8 +32,9 @@ const Product: React.FC = () => {
   return (
     <Container disableGutters maxWidth={false} className="h-[100vh] flex flex-row p-0 m-0">
       <Sidebar/>
-      <Box className="flex flex-grow flex-col">
+      <Box className="flex flex-grow flex-col  ">
         <Header/>
+        <AddBook/>
         <TableData headers={headers} data={books} />
       </Box>
     </Container>

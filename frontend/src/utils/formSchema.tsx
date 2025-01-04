@@ -15,3 +15,11 @@ export const LoginSchema = z.object({
 })
 
 export type LoginFormData = z.infer<typeof LoginSchema>;
+
+// Validation schema for book data
+export const BookSchema = z.object({
+  book_title: z.string().min(1, "Title is required"), 
+  book_description: z.string().min(1, "Description is required"),
+});
+
+export type BookFormData = z.infer<typeof BookSchema>;
