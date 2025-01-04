@@ -14,7 +14,8 @@ class BookController {
   // ADD NEW BOOK
   addBook = async (req, res) => {
     const { book_title, book_description } = req.body;
-    const newBook = { book_title, book_description };
+    const image_url = `uploads/${req.file.filename}`;
+    const newBook = { book_title, book_description , image_url  };
 
     try {
       const result = await BookModel.insertBook(newBook);
