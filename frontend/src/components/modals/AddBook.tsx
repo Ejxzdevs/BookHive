@@ -30,7 +30,7 @@ function PopupExample() {
     }
   }
   
-  const { register, handleSubmit, formState: { errors }, } = useForm<BookFormData>({ resolver: zodResolver(BookSchema),});
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<BookFormData>({ resolver: zodResolver(BookSchema),});
     const onSubmit: SubmitHandler<BookFormData> = async (data) => {
       try {
         console.log("Form submitted with data: ", data);
@@ -50,6 +50,11 @@ function PopupExample() {
         });
   
         console.log('Inquiry added successfully:', response);
+
+        reset(); 
+        setImage(null);
+        setPreImage('');
+        handleClose();
   
       } catch (error) {
         console.error('Error submitting inquiry:', error);
@@ -61,7 +66,7 @@ function PopupExample() {
   return (
     <Box>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open Popup
+        Add Book
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <Box className="flex justify-end">
