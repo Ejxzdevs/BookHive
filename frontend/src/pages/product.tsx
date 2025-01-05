@@ -5,18 +5,18 @@ import Sidebar from '../components/Sidebar';
 import { Container, Box  } from "@mui/material"
 import Header from '../components/Header';
 import AddBook from '../components/modals/AddBook'
-
 interface Book {
   book_id: number;
   book_title: string;
-  book_description: string;
+  genre: string;
+  author: string;
   book_release: Date;
-  [key: string]: string | number | Date;  // Allow flexible keys
+  [key: string]: string | number | Date;
 }
 
-const Product: React.FC = () => {
+  const Product: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
-  const headers: Array<string> = ['Id', 'Book Title', 'Description', 'Author', 'Date Release'];
+  const headers: Array<string> = ['Id', 'Title', 'Genre', 'Author', 'Date Added', 'Action'];
 
   useEffect(() => {
     axios
@@ -34,8 +34,10 @@ const Product: React.FC = () => {
       <Sidebar/>
       <Box className="flex flex-grow flex-col  ">
         <Header/>
-        <AddBook/>
-        <TableData headers={headers} data={books} />
+        <Box className="flex justify-end pt-5 pe-6">
+          <AddBook/>
+        </Box>
+          <TableData headers={headers} data={books} />
       </Box>
     </Container>
   );
