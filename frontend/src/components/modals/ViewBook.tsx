@@ -5,20 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { BookSchema, BookFormData } from '../../utils/formSchema';
 import { updateBook } from '../../services/bookApi';
-
-interface Book {
-  book_id: number;
-  book_title: string;
-  genre: string;
-  author: string;
-  book_description: string;
-  book_release: Date;
-  image_url: File | string;
-}
-
-interface FormProps {
-  data: Book[];
-}
+import { FormProps} from '../../types/bookInterface'
 
 const ViewBook: React.FC<FormProps> = ({ data }) => {
   const [viewModal, setViewModal] = useState<boolean>(false);

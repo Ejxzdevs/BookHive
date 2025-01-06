@@ -2,17 +2,7 @@ import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { Container, Box , Table, TableBody, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import ViewBook from '../modals/ViewBook';
-
-// Define books interface here
-interface Book {
-  book_id: number;
-  book_title: string;
-  genre: string;
-  author: string;
-  book_description: string;
-  book_release: Date;
-  image_url: File | string;
-}
+import { Book } from '../../types/bookInterface'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {

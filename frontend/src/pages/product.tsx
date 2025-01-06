@@ -5,17 +5,7 @@ import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import AddBook from '../components/modals/AddBook';
 import { getAllBooks } from '../services/bookApi';
-
-interface Book {
-  book_id: number;
-  book_title: string;
-  genre: string;
-  author: string;
-  book_description: string;
-  book_release: Date;
-  image_url: string;
-  [key: string]: string | number | Date;
-}
+import { Book } from '../types/bookInterface'
 
 const Product: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
