@@ -64,8 +64,13 @@ const ViewBook: React.FC<FormProps> = ({ data }) => {
 
   return (
     <Box>
-      <Button variant="outlined" color="primary" onClick={openViewModal}>
-        Edit Book
+      <Button 
+        variant="outlined" 
+        color="primary" 
+        onClick={openViewModal} 
+        sx={{ padding: 0, textTransform: 'none', width: '60px', height: '30px' }}
+        >
+        View
       </Button>
       <Dialog open={viewModal}>
         <Box className="flex justify-end">
