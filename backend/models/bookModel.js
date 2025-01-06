@@ -24,8 +24,12 @@ class Book {
     }
 
     static async updateBook(book) {
-        const query = "UPDATE books SET book_title = ?, book_description = ?, genre = ?, author = ?, image_url = ? WHERE book_id = ?";
-        const values = [book.book_title, book.book_description, book.genre, book.author, book.image_url, book.book_id];
+        const query = `
+        UPDATE books
+        SET book_title = ?, book_description = ?, genre = ?, author = ?, image_url = COALESCE(?, image_url)
+        WHERE book_id = ?
+        `;
+        const values = [book.book_title, book.book_description, book.genre, book.author, book.image_url ? book.image_url : null, book.book_id];
         
         try {
             const [result] = await connect.promise().query(query, values);
