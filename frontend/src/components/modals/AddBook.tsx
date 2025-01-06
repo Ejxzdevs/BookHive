@@ -6,7 +6,7 @@ import { BookSchema, BookFormData } from '../../utils/formSchema'
 import { insertBook } from '../../services/bookApi';
 import CloseIcon from '@mui/icons-material/Close';
 
-function PopupExample() {
+function AddBook() {
     const [open, setOpen] = useState(false);
     const [image, setImage] = useState<File | null>(null)
     const [preImage, setPreImage] = useState<string| undefined>('')
@@ -57,7 +57,7 @@ function PopupExample() {
         handleClose();
   
       } catch (error) {
-        console.error('Error submitting inquiry:', error);
+        console.error('Error submitting book', error);
       }
     };
 
@@ -133,4 +133,4 @@ function PopupExample() {
   );
 }
 
-export default PopupExample;
+export default AddBook;
