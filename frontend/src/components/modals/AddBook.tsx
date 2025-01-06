@@ -23,7 +23,6 @@ function AddBook() {
     const files = e.target.files;
     if (files && files[0]) {
       const file = files[0];
-      console.log(file)
       setImage(file);
       const imageUrl = URL.createObjectURL(file);
       setPreImage(imageUrl);
@@ -33,8 +32,6 @@ function AddBook() {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<BookFormData>({ resolver: zodResolver(BookSchema),});
     const onSubmit: SubmitHandler<BookFormData> = async (data) => {
       try {
-        console.log("Form submitted with data: ", data);
-
         // Prevent form submission if image is not provided
         if (!image) {
           console.error("Image is required!");
@@ -49,19 +46,18 @@ function AddBook() {
           image_url: image,
         });
   
-        console.log('Inquiry added successfully:', response);
+        console.log('Book added successfully:', response);
 
         reset(); 
         setImage(null);
         setPreImage('');
         handleClose();
+        window.location.reload();
   
       } catch (error) {
         console.error('Error submitting book', error);
       }
     };
-
-
 
   return (
     <Box>
@@ -76,9 +72,7 @@ function AddBook() {
         </Box>
         <DialogTitle className='text-center' >New Book</DialogTitle>
         <DialogContent>
-          <form className='p-5 flex flex-col gap-5 w-[450px] ' 
-            onSubmit={handleSubmit(onSubmit)} 
-          >
+        <form className="p-5 flex flex-col gap-5 w-[450px]" onSubmit={(e) => { e.preventDefault(); handleSubmit(onSubmit)(e); }}>
              <TextField
                     label="Book title"
                     fullWidth
