@@ -39,5 +39,17 @@ class Book {
             throw new Error('Error updating book');
         }
     }
+
+    static async deleteBook (id) {
+        const query = " DELETE FROM books WHERE book_id = ? ";
+        const value = [id];
+        try {
+            const [result] = await connect.promise().query(query,value)
+            return result;
+        } catch (error) {
+            console.error('Error deleting book: ', error);
+            throw new Error('Error deleting book');
+        }
+    }
 }
 module.exports = Book;
