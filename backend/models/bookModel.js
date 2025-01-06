@@ -22,6 +22,18 @@ class Book {
             throw new Error('Error inserting book');
         }
     }
-}
 
+    static async updateBook(book) {
+        const query = "UPDATE books SET book_title = ?, book_description = ?, genre = ?, author = ?, image_url = ? WHERE book_id = ?";
+        const values = [book.book_title, book.book_description, book.genre, book.author, book.image_url, book.book_id];
+        
+        try {
+            const [result] = await connect.promise().query(query, values);
+            return result;
+        } catch (error) {
+            console.error('Error updating book: ', error);
+            throw new Error('Error updating book');
+        }
+    }
+}
 module.exports = Book;
