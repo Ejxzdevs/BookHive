@@ -1,14 +1,17 @@
-import React from 'react';
 import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import { Container, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
+import { Container, Box , Table, TableBody, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
+import ViewBook from '../modals/ViewBook';
 
 // Define books interface here
 interface Book {
   book_id: number;
   book_title: string;
+  genre: string;
+  author: string;
   book_description: string;
   book_release: Date;
+  image_url: File | string;
 }
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -41,14 +44,16 @@ interface TableProps {
 }
 
 const TableData: React.FC<TableProps> = ({ headers, data }) => {
+
   return (
-    <Container className="h-screen flex justify-center items-center m-0">
+    <Container className="py-8 overflow-y-auto">
+     
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 600 }} aria-label="customized table">
           <TableHead>
             <TableRow>
               {headers.map((header, index) => {
-                return <TableCell key={index}>{header}</TableCell>;
+                return <TableCell align="center" key={index}>{header}</TableCell>;
               })}
             </TableRow>
           </TableHead>
@@ -56,19 +61,17 @@ const TableData: React.FC<TableProps> = ({ headers, data }) => {
             {data.map((book) => {
               return (
                 <StyledTableRow key={book.book_id}>
-                  <StyledTableCell component="th" scope="row">
-                    {book.book_id}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">{book.book_title}</StyledTableCell>
-                  <StyledTableCell align="right">{book.book_description}</StyledTableCell>
-                  <StyledTableCell align="right">{book.book_description}</StyledTableCell>
-                  <StyledTableCell align="right">
+                  <StyledTableCell align="center">{book.book_id}</StyledTableCell>
+                  <StyledTableCell align="center">{book.book_title}</StyledTableCell>
+                  <StyledTableCell align="center">{book.genre}</StyledTableCell>
+                  <StyledTableCell align="center">{book.author}</StyledTableCell>
+                  <StyledTableCell align="center">
                     {new Date(book.book_release).toLocaleDateString()}
                   </StyledTableCell>
-                  <StyledTableCell align="right">
-                    <Button variant="contained" color="primary">
-                      Edit
-                    </Button>
+                  <StyledTableCell align="center" className="space-x-2">
+                    <Box>
+                        <ViewBook data={[book]}/>
+                    </Box>
                     <Button variant="outlined" color="secondary">
                       Delete
                     </Button>

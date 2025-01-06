@@ -17,5 +17,6 @@ const upload = multer({ storage: storage });
 // Route books
 router.get('/', bookController.getBooks);
 router.post('/add', upload.single('image_url'), bookController.addBook);
+router.patch('/update/:id', upload.single('image_url'), bookController.updatebook);
 
 module.exports = router;

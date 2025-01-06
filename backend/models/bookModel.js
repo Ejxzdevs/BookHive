@@ -13,8 +13,8 @@ class Book {
     }
 
     static async insertBook(book) {
-        const query = "INSERT INTO BOOKS (book_title, book_description, image_url) VALUES (?)";
-        const values = [book.book_title, book.book_description , book.image_url];
+        const query = "INSERT INTO BOOKS (book_title, book_description, genre , author, image_url) VALUES (?)";
+        const values = [book.book_title, book.book_description ,book.genre,book.author, book.image_url];
         try {
             const [result] = await connect.promise().query(query, [values]);
             return result;
@@ -22,6 +22,22 @@ class Book {
             throw new Error('Error inserting book');
         }
     }
-}
 
+    static async updateBook(book) {
+        const query = `
+        UPDATE books
+        SET book_title = ?, book_description = ?, genre = ?, author = ?, image_url = COALESCE(?, image_url)
+        WHERE book_id = ?
+        `;
+        const values = [book.book_title, book.book_description, book.genre, book.author, book.image_url ? book.image_url : null, book.book_id];
+        
+        try {
+            const [result] = await connect.promise().query(query, values);
+            return result;
+        } catch (error) {
+            console.error('Error updating book: ', error);
+            throw new Error('Error updating book');
+        }
+    }
+}
 module.exports = Book;
