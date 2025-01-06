@@ -39,7 +39,7 @@ export const insertBook = async (data: { book_title: string; book_description: s
 };
 
 
-export const updateBook = async (data: { book_title: string; book_description: string; genre: string; author: string; image: File | null ; id: number }) => {
+export const updateBook = async (data: { book_title: string; book_description: string; genre: string; author: string; image: File | string ; id: number }) => {
   try {
     const formData = new FormData();
     formData.append('book_title', data.book_title);

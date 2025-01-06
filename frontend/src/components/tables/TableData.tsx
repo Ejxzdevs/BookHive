@@ -11,7 +11,7 @@ interface Book {
   author: string;
   book_description: string;
   book_release: Date;
-  image: File | null;
+  image_url: File | string;
 }
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
