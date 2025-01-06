@@ -1,7 +1,7 @@
-import React from 'react';
 import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import { Container, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
+import { Container, Box , Table, TableBody, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
+import ViewBook from '../modals/ViewBook';
 
 // Define books interface here
 interface Book {
@@ -9,7 +9,9 @@ interface Book {
   book_title: string;
   genre: string;
   author: string;
+  book_description: string;
   book_release: Date;
+  image: File | null;
 }
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -42,8 +44,10 @@ interface TableProps {
 }
 
 const TableData: React.FC<TableProps> = ({ headers, data }) => {
+
   return (
     <Container className="py-8 overflow-y-auto">
+     
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 600 }} aria-label="customized table">
           <TableHead>
@@ -65,9 +69,9 @@ const TableData: React.FC<TableProps> = ({ headers, data }) => {
                     {new Date(book.book_release).toLocaleDateString()}
                   </StyledTableCell>
                   <StyledTableCell align="center" className="space-x-2">
-                    <Button variant="contained" color="primary">
-                      Edit
-                    </Button>
+                    <Box>
+                        <ViewBook data={[book]}/>
+                    </Box>
                     <Button variant="outlined" color="secondary">
                       Delete
                     </Button>
