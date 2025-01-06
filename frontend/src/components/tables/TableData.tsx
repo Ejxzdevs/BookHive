@@ -1,8 +1,9 @@
 import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import { Container, Box , Table, TableBody, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
+import { Container, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import ViewBook from '../modals/ViewBook';
-import { Book } from '../../types/bookInterface'
+import { Book } from '../../types/bookInterface';
+import { deleteBook as deleteBookApi } from '../../services/bookApi'; // Renaming to avoid naming conflict
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,9 +36,18 @@ interface TableProps {
 
 const TableData: React.FC<TableProps> = ({ headers, data }) => {
 
+  const deleteBook = async (id: number) => {
+    try {
+      const response = await deleteBookApi({id});
+      console.log('Book deleted successfully:', response);
+      window.location.reload();
+    } catch (error) {
+      console.error('Error deleting book:', error);
+    }
+  };
+
   return (
     <Container className="py-8 overflow-y-auto">
-     
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 600 }} aria-label="customized table">
           <TableHead>
@@ -58,11 +68,22 @@ const TableData: React.FC<TableProps> = ({ headers, data }) => {
                   <StyledTableCell align="center">
                     {new Date(book.book_release).toLocaleDateString()}
                   </StyledTableCell>
-                  <StyledTableCell align="center" className="space-x-2">
-                    <Box>
-                        <ViewBook data={[book]}/>
-                    </Box>
-                    <Button variant="outlined" color="secondary">
+                  <StyledTableCell
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 2,
+                    }}
+                  >
+                    <ViewBook data={[book]} />
+                    <Button 
+                      onClick={() => deleteBook(book.book_id)} // Pass the book ID correctly
+                      variant="outlined" 
+                      color="error" 
+                      sx={{ padding: 0, textTransform: 'none', width: '60px', height: '30px' }}
+                    >
                       Delete
                     </Button>
                   </StyledTableCell>
