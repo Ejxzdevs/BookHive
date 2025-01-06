@@ -15,7 +15,7 @@ class BookController {
   // ADD NEW BOOK
   addBook = async (req, res) => {
     const { book_title, book_description , genre , author } = req.body;
-    let image_url = (req.file && req.file.filename) ? `uploads/${req.file.filename}` : '';
+    let image_url = (req.file && req.file.filename) ? `${req.file.filename}` : '';
     const newBook = { book_title, book_description , genre ,author, image_url  };
 
     try {
@@ -28,7 +28,7 @@ class BookController {
 
   updatebook = async (req , res) => {
     const { book_title, book_description , genre , author, } = req.body;
-    let image_url = (req.file && req.file.filename) ? `uploads/${req.file.filename}` : '';
+    let image_url = (req.file && req.file.filename) ? `${req.file.filename}` : '';
     const book_id = req.params.id
     const updateBook = {book_id, book_title, book_description , genre ,author ,image_url};
     
