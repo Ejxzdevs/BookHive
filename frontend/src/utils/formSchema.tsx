@@ -1,6 +1,6 @@
-// inquirySchema.ts
 import z from 'zod';
 
+// SCHEMA FOR INQUIRY
 export const InquirySchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email format").min(1, "Email is required"),
@@ -9,6 +9,7 @@ export const InquirySchema = z.object({
 
 export type InquiryFormData = z.infer<typeof InquirySchema>;
 
+// SCHEMA FOR USER
 export const LoginSchema = z.object({
   user_email: z.string().email("Invalid email format").min(1, "Email is required"),
   user_password: z.string().min(1, "Password is required")
@@ -16,7 +17,7 @@ export const LoginSchema = z.object({
 
 export type LoginFormData = z.infer<typeof LoginSchema>;
 
-// Validation schema for book data
+// SCHEMA FOR BOOK
 export const BookSchema = z.object({
   id: z.number().optional(), 
   book_title: z.string().min(1, "Title is required"), 
@@ -26,3 +27,14 @@ export const BookSchema = z.object({
 });
 
 export type BookFormData = z.infer<typeof BookSchema>;
+
+// SCHEMA FOR REQUEST
+export const RequestSchema = z.object({
+  book_id: z.string().min(1, "Book ID must be a positive integer"),
+  fullname: z.string().min(1, "Fullname is required"), 
+  request_email: z.string().min(1, "Email is required"),
+  phone_number: z.string().min(1, "Phone is required"),
+  request_message: z.string().optional(),
+});
+
+export type RequestFormData = z.infer<typeof RequestSchema>;
