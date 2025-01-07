@@ -66,10 +66,10 @@ const BooksSection = () => {
         {!loading && !error && (
           <Grid container spacing={2}>
             {filteredBooks.map((book) => (
-              <Grid size={{ xs: 12, sm: 8, md: 3 }} key={book.book_id} container spacing={2}>
-                <Card sx={{ maxWidth: 350 }}>
-                  <Box sx={{ paddingX: '15px', paddingY: '5px' }}>
-                    <CardMedia sx={{ height: 200, backgroundPosition: 'center' }} image={`http://localhost:8080/${book.image_url}`} title="Book Image" />
+              <Grid size={{ xs: 12, sm: 6, md: 3 }} key={book.book_id} container spacing={2}>
+                <Card sx={{ maxWidth: 330 , Height: 'auto',  boxShadow: 5, paddingY: '10px' }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingX: '15px', paddingY: '5px' }}>
+                    <CardMedia sx={{ height: 180, width: 120 , backgroundPosition: 'center' }} image={`http://localhost:8080/${book.image_url}`} title="Book Image" />
                   </Box>
                   <CardContent>
                     <Typography gutterBottom variant="body1" component="div" sx={{ margin: '0' }}>
@@ -112,10 +112,10 @@ const BooksSection = () => {
                         : 'No release date'}
             </Typography>
         </Box>
-        <DialogContent className='min-w-[300px]  min-h-[800px] '  >
-            <Box className="" >
+        <DialogContent className='max-w-[450px]  min-h-[600px] '  >
+            <Box className="flex items-center justify-center" >
                 <img
-                className='h-[500px] w-full' 
+                className='h-[250px] w-[180px]' 
                 src={`http://localhost:8080/${selectedBook?.image_url}`}
                 alt={`http://localhost:8080/${selectedBook?.image_url}`}
                 />
