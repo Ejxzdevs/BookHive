@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 import EnduserHome from './pages/EnduserHome';
 import EnduserAbout from './pages/EnduserAbout';
 import EnduserContact from './pages/EnduserContact';
+import EndUserBooks from './pages/EndUserBooks';
 import Navigation from "./components/Navigation";
 import Dashboard from './pages/dashboard';
 import Product from './pages/product';
@@ -35,6 +36,7 @@ function App() {
         <Routes>
           <Route path="/" element={<EnduserHome />} />
           <Route path="/About" element={<EnduserAbout />} />
+          <Route path="/books" element={<EndUserBooks />} />
           <Route path="/Contact" element={<EnduserContact />} />
           <Route path="/admin" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
