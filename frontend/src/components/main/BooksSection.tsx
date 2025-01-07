@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Book } from '../../types/bookInterface';
 import CloseIcon from '@mui/icons-material/Close';
 import SeachBar from '../forms/SeachBar';
+import SendRequest from '../modals/SendRequest'
 
 const BooksSection = () => {
   const [books, setBooks] = useState<Book[]>([]);
@@ -83,8 +84,8 @@ const BooksSection = () => {
                     </Typography>
                   </CardContent>
                   <CardActions sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
-                    <Button size="small">Request</Button>
-                    <Button size="small" onClick={() => handleOpenModal(book)}>View</Button>
+                    <SendRequest data={[book]}/>
+                    <Button color='primary' onClick={() => handleOpenModal(book)}>View</Button>
                   </CardActions>
                 </Card>
               </Grid>
