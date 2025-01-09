@@ -1,12 +1,10 @@
 import { useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
-import Cookies from 'js-cookie';
+import { NavLink } from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home';
 import BookIcon from '@mui/icons-material/Book';
-import SettingsIcon from '@mui/icons-material/Settings';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Box , Button, List, ListItem, Typography } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
+import { Box , Button, List, Typography } from '@mui/material';
 import Logo from '../assets/Books.png';
 
 interface Menu {
@@ -18,19 +16,11 @@ interface Menu {
 const Menus: Menu[] = [
   { name: 'Dashboard', icon: <HomeIcon />, path: '/dashboard' },
   { name: 'Books', icon: <BookIcon />, path: '/product' },
-  { name: 'Settings', icon: <SettingsIcon />, path: '/settings' },
-  { name: 'Logout', icon: <ExitToAppIcon />, path: '/logout' }
+  { name: 'Request', icon: <SendIcon  />, path: '/request' },
 ];
 
 const Sidebar: React.FC = () => {
   const [open, setOpen] = useState(true);
-  const navigate = useNavigate();
-
-  // Logout function
-  const logout = () => {
-    Cookies.remove('userRole', { path: '' });
-    navigate('/admin');
-  };
 
   return (
     <Box className={`${open ? "w-[250px]" : "w-[70px]"} duration-300 h-screen shadow-md border relative`}>
@@ -52,16 +42,6 @@ const Sidebar: React.FC = () => {
       <Box>
         <List className='cursor-pointer'>
           {Menus.map((menu, index) => {
-            // If the current menu is 'Logout', we handle it separately
-            if (menu.name === 'Logout') {
-              return (
-                <ListItem className='border p-4 flex flex-row gap-2 hover:text-[#19B37E] focus:text-[#19B37E]' key={index} onClick={logout}>
-                  <Box>{menu.icon}</Box>
-                  <Typography component="span" className={`${open ? "block" : "hidden"}`}>{menu.name}</Typography>
-                </ListItem>
-              );
-            }
-
             return (
                 <NavLink className='border p-4 flex flex-row gap-2 hover:text-[#19B37E] focus:text-[#19B37E]'  to={menu.path} key={index}>
                   <Box>{menu.icon}</Box>
