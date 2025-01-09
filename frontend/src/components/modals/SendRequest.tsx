@@ -39,6 +39,8 @@ const SendRequest : React.FC<FormProps> = ({ data }) => {
           sx={{ 
           color: '#19B37E', 
           borderColor: '#19B37E', 
+          textTransform: 'none', 
+          height: '30px',
         '&:hover': {
           borderColor: '#19B37E',
           backgroundColor: 'rgba(25, 179, 126, 0.1)'
