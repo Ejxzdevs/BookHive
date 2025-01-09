@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { Container, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
-import ViewBook from '../modals/ViewBook';
+import EditBook from '../modals/EditBook';
 import { Book } from '../../types/bookInterface';
 import { deleteBook as deleteBookApi } from '../../services/bookApi'; // Renaming to avoid naming conflict
 
@@ -77,7 +77,7 @@ const TableData: React.FC<TableProps> = ({ headers, data }) => {
                       gap: 2,
                     }}
                   >
-                    <ViewBook data={[book]} />
+                    <EditBook data={[book]} />
                     <Button 
                       onClick={() => deleteBook(book.book_id)} // Pass the book ID correctly
                       variant="outlined" 
