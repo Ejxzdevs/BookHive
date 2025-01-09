@@ -8,6 +8,17 @@ const apiClient = axios.create({
   },
 });
 
+// GET REQUEST
+export const getAllRequests = async () => {
+  try {
+    const response = await apiClient.get('/request');
+    return response.data; 
+  } catch (error) {
+    console.error('Error fetching Requests:', error);
+    throw error;
+  }
+}
+
 // API function to send request data
 export const insertRequest = async (data: { book_id: string; fullname: string; request_email: string; phone_number: string; request_message: string | null }) => {
   try {
