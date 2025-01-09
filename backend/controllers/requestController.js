@@ -2,6 +2,16 @@ const requestModel = require('../models/requestModel');
 
 class requestController {
 
+    // GET ALL REQUEST
+    getRequests = async (req, res) => {
+      try {
+        const data = await requestModel.getAllRequest();
+        res.json(data); 
+      } catch (err) {
+        res.status(500).json({ error: err.message });
+      }
+    };
+
     // ADD REQUEST
     addRequest = async (req, res) => {
         const { book_id, fullname, request_email, phone_number, request_message} = req.body;
