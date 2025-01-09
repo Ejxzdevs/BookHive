@@ -1,148 +1,72 @@
+import { Box, Button, Dialog, DialogContent, DialogTitle, Typography } from '@mui/material';
+import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Box, TextField, Typography, Input } from '@mui/material';
-import { useState, useEffect } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { BookSchema, BookFormData } from '../../utils/formSchema';
-import { updateBook } from '../../services/bookApi';
-import { FormProps} from '../../types/bookInterface'
+import { FormProps } from '../../types/bookInterface'
 
-const ViewBook: React.FC<FormProps> = ({ data }) => {
-  const [viewModal, setViewModal] = useState<boolean>(false);
-  const openViewModal = () => setViewModal(true);
-  const closeViewModal = () => setViewModal(false);
-  const [image, setImage] = useState<File | string>('');
-  const [preImage, setPreImage] = useState<string | undefined>('');
-  const [displayBookImage, setDisplayBookImage] = useState<string | undefined>('');
+const ViewBook : React.FC<FormProps> = ({ data }) => {
+  const [open, setOpen] = useState(false);
 
-  const { register, handleSubmit, formState: { errors }, setValue } = useForm<BookFormData>({
-    resolver: zodResolver(BookSchema),
-  });
-
-  useEffect(() => {
-    if (data && data.length > 0) {
-      const book = data[0];
-
-      setValue('id', book.book_id);
-      setValue('book_title', book.book_title);
-      setValue('genre', book.genre);
-      setValue('author', book.author);
-      setValue('book_description', book.book_description);
-
-      const imageUrl = `http://localhost:8080/${book.image_url}`;
-      setDisplayBookImage(imageUrl);
-    }
-  },[data, setValue]);
-
-  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files && files[0]) {
-      const file = files[0];
-      setImage(file);
-      const imageUrl = URL.createObjectURL(file);
-      setPreImage(imageUrl);
-    }
-  }
-
-  const onSubmit: SubmitHandler<BookFormData> = async (data) => {
-    try {
-      const response = await updateBook({
-        book_title: data.book_title,
-        book_description: data.book_description,
-        genre: data.genre,
-        author: data.author,
-        image: image,
-        id: data.id,
-      });
-
-      console.log('Book updated successfully:', response);
-      window.location.reload()
-    } catch (error) {
-      console.error('Error updating book', error);
-    }
+  const handleClickOpen = () => {
+    setOpen(true);
   };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  if (!data[0]) return null;
 
   return (
     <Box>
-      <Button 
-        variant="outlined" 
-        color="primary" 
-        onClick={openViewModal} 
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={handleClickOpen}
         sx={{ padding: 0, textTransform: 'none', width: '60px', height: '30px' }}
-        >
+      >
         View
       </Button>
-      <Dialog open={viewModal}>
+      <Dialog open={open} onClose={handleClose}>
         <Box className="flex justify-end">
-          <Button className="left-0" color="primary" onClick={closeViewModal}>
+          <Button className="left-0" color="primary" onClick={handleClose}>
             <CloseIcon />
           </Button>
         </Box>
-        <DialogTitle className="text-center">Update Book</DialogTitle>
-        <DialogContent>
-            <form
-              className="p-5 flex flex-col gap-5 w-[450px]"
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <TextField
-                label="Book id"
-                fullWidth
-                {...register('id')}
-                sx={{ display : 'none' }}
-              />
-              <TextField
-                label="Book title"
-                fullWidth
-                {...register('book_title')}
-                error={!!errors.book_title}
-                helperText={errors.book_title?.message}
-              />
-              <TextField
-                label="Book Genre"
-                fullWidth
-                {...register('genre')}
-                error={!!errors.genre}
-                helperText={errors.genre?.message}
-              />
-              <TextField
-                label="Book Author"
-                fullWidth
-                {...register('author')}
-                error={!!errors.author}
-                helperText={errors.author?.message}
-              />
-              <TextField
-                label="Description"
-                multiline
-                rows={5}
-                fullWidth
-                {...register('book_description')}
-                error={!!errors.book_description}
-                helperText={errors.book_description?.message}
-              />
-              <Typography variant="body1" className="p-0 m-0">
-                Upload Image
+        <Box className="pl-[22px]" sx={{ margin: '0' }}>
+          <Typography variant="h5">{data[0].book_title}</Typography>
+          <Typography variant="body1" component="div" sx={{ color: 'text.secondary', margin: '0' }}>
+            Date Release:{" "}
+            {data[0].book_release
+              ? isNaN(new Date(data[0].book_release).getTime())
+                ? 'Invalid release date'
+                : new Date(data[0].book_release).toLocaleDateString()
+              : 'No release date'}
+          </Typography>
+        </Box>
+        <DialogTitle className="text-center">Book Details</DialogTitle>
+        <DialogContent >
+          <Box className="flex items-center justify-center">
+            <img
+              className="h-[250px] w-[180px]"
+              src={`http://localhost:8080/${data[0].image_url}`}
+              alt={data[0].book_title}
+            />
+          </Box>
+          <Box className="flex flex-row justify-between items-center gap-5 mt-2">
+            <Box>
+              <Typography gutterBottom variant="body1" component="div" sx={{ margin: '0' }}>
+                Author: {data[0].author}
               </Typography>
-              <Input
-                className="p-0 m-0"
-                type="file"
-                inputProps={{ accept: 'image/*' }}
-                fullWidth
-                onChange={handleImage}
-              />
-              <Box mt={2} display="flex" justifyContent="center">
-                <img
-                  src={preImage ? preImage : displayBookImage}
-                  alt={displayBookImage}
-                  style={{ maxWidth: '100%', maxHeight: '200px' }}
-                />
-              </Box>
-              <DialogActions>
-                <Button type="submit" variant="contained" fullWidth sx={{ backgroundColor: '#19B37E' }}>
-                  Submit
-                </Button>
-              </DialogActions>
-            </form>
+              <Typography variant="body2" sx={{ color: 'text.secondary', margin: '0' }}>
+                Genre: {data[0].genre}
+              </Typography>
+            </Box>
+          </Box>
+          <Box>
+            <Typography variant="body1" sx={{ color: 'text.secondary', marginTop: '20px' }}>
+              {data[0].book_description}
+            </Typography>
+          </Box>
         </DialogContent>
       </Dialog>
     </Box>
