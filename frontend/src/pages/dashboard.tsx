@@ -10,7 +10,7 @@ const Dashboard = () => {
         <Header />
         <Box className="flex justify-between items-center pt-5 px-6">
           <Typography sx={{fontFamily: 'Inter' , fontWeight: '500'}} variant="h5" color="initial">
-            Dashboard
+            Dashboard 
           </Typography>
         </Box>
       </Box>
