@@ -22,6 +22,18 @@ class Request {
             throw new Error('Error inserting request');
         }
     }
+
+    static async deleteRequest(id) {
+        const query = " DELETE FROM requests WHERE request_id = ? ";
+        const value = [id];
+        try {
+            const [result] = await connect.promise().query(query,value)
+            return result;
+        } catch (error) {
+            console.error('Error deleting request: ', error);
+            throw new Error('Error deleting request');
+        }
+    }
   
 }
 
