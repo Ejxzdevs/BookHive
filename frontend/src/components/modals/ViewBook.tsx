@@ -32,7 +32,7 @@ const ViewBook : React.FC<FormProps> = ({ data }) => {
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <Box className="flex justify-end">
-          <Button className="left-0" color="primary" onClick={handleClose}>
+          <Button className="left-0" color="error" onClick={handleClose}>
             <CloseIcon />
           </Button>
         </Box>
