@@ -35,7 +35,7 @@ const Sidebar: React.FC = () => {
            }} className={` ${open ? "block" : "hidden"}`} >
             BookHive
             </Typography>
-        <Button onClick={() => setOpen(!open)} className={` text-white  absolute  ${open ? "left-[30px]" : "right-[24px]"}`} >
+        <Button onClick={() => setOpen(!open)} className={` text-white  absolute  ${open ? "left-[25px]" : "right-[24px]"}`} >
           <ArrowForwardIcon/>
         </Button>
       </Box>
