@@ -2,6 +2,7 @@ import { Container, Table, TableBody, TableContainer, TableHead, TableRow, Paper
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
 import {  RequestArrProps} from '../../types/requestInterface'
+import ViewRequest from '../modals/ViewRequest'; 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -28,6 +29,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }));
 
 const RequestData: React.FC<RequestArrProps> = ({ data }) => {
+
+  
   return (
     <Container className="py-8 overflow-y-auto">
       <TableContainer component={Paper}>
@@ -48,6 +51,9 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
                 </TableCell>
                 <TableCell align="center" >
                     Date
+                </TableCell>
+                <TableCell align="center" >
+                    Action
                 </TableCell>
             </TableRow>
           </TableHead>
@@ -71,6 +77,7 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
                       gap: 2,
                     }}
                   >
+                    <ViewRequest data={[request]} />
                   </StyledTableCell>
                 </StyledTableRow>
               );
