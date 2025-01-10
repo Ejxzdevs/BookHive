@@ -1,4 +1,5 @@
-export interface Request {
+import { Book } from './bookInterface'
+export interface Request extends Book {
     request_id: number
     book_id: number;
     fullname: string;
