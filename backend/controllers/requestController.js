@@ -24,6 +24,19 @@ class requestController {
           res.status(500).json({ error: err.message });
         }
     };
+
+    // DELETE REQUEST
+    deleteRequest = async (req , res) => {
+      const request_id = req.params.id
+  
+      try {
+        const result = await requestModel.deleteRequest(request_id);
+        res.status(200).json({ message: 'Request deleted successfully', result });
+      } catch (err) {
+        res.status(500).json({ error: err.message });
+      }
+  
+    }
 }
 
 module.exports = new requestController();
