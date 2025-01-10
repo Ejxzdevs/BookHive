@@ -9,7 +9,6 @@ export interface Book {
     book_status: string;
     request_count : number;
 }
-  
 export interface FormProps {
     data: Book[];
 }
