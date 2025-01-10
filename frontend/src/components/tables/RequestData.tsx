@@ -1,8 +1,10 @@
-import { Container, Table, TableBody, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Container, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
 import {  RequestArrProps} from '../../types/requestInterface'
-import ViewRequest from '../modals/ViewRequest'; 
+import ViewRequest from '../modals/ViewRequest';
+import { deleteRequest } from '../../services/requestApi'; 
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -30,6 +32,16 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const RequestData: React.FC<RequestArrProps> = ({ data }) => {
 
+  const deleteBook = async (id: number) => {
+      try {
+        const response = await deleteRequest({id});
+        console.log('Request deleted successfully:', response);
+        window.location.reload();
+      } catch (error) {
+        console.error('Error deleting Request:', error);
+      }
+    };
+
   
   return (
     <Container className="py-8 overflow-y-auto">
@@ -41,10 +53,7 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
                     Request ID
                 </TableCell>
                 <TableCell align="center" >
-                    Fullname
-                </TableCell>
-                <TableCell align="center" >
-                    Email
+                    Full Name
                 </TableCell>
                 <TableCell align="center" >
                     Phone Number
@@ -63,7 +72,6 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
                 <StyledTableRow key={request.request_id}>
                   <StyledTableCell align="center">{request.request_id}</StyledTableCell>
                   <StyledTableCell align="center">{request.fullname}</StyledTableCell>
-                  <StyledTableCell align="center">{request.request_email}</StyledTableCell>
                   <StyledTableCell align="center">{request.phone_number}</StyledTableCell>
                   <StyledTableCell align="center">
                     {new Date(request.request_date).toLocaleDateString()}
@@ -78,6 +86,14 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
                     }}
                   >
                     <ViewRequest data={[request]} />
+                    <Button 
+                      onClick={() => deleteBook(request.request_id)} 
+                      variant="outlined" 
+                      color="error" 
+                      sx={{ padding: 0, textTransform: 'none', width: '60px', height: '30px' }}
+                    >
+                      Delete
+                    </Button>
                   </StyledTableCell>
                 </StyledTableRow>
               );
