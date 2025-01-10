@@ -12,7 +12,6 @@ const Dashboard = () => {
           <Typography sx={{fontFamily: 'Inter' , fontWeight: '500'}} variant="h5" color="initial">
             Dashboard
           </Typography>
-
         </Box>
       </Box>
     </Container>
