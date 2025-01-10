@@ -34,9 +34,22 @@ const SendRequest : React.FC<FormProps> = ({ data }) => {
 
   return (
     <Box>
-        <Button sx={{ color: '#19B37E'}} onClick={handleOpen} >
-            Book Request
-        </Button>
+      <Button 
+        variant="outlined" 
+          sx={{ 
+          color: '#19B37E', 
+          borderColor: '#19B37E', 
+          textTransform: 'none', 
+          height: '30px',
+        '&:hover': {
+          borderColor: '#19B37E',
+          backgroundColor: 'rgba(25, 179, 126, 0.1)'
+          }
+            }} 
+      onClick={handleOpen}
+        >
+        Book Request
+    </Button>
         <Dialog open={open}>
             <Box className="flex justify-end">
                 <Button className='left-0' color="error" onClick={handleClose}>

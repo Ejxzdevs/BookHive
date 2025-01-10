@@ -22,7 +22,11 @@ const ViewBook : React.FC<FormProps> = ({ data }) => {
         variant="outlined"
         color="primary"
         onClick={handleClickOpen}
-        sx={{ padding: 0, textTransform: 'none', width: '60px', height: '30px' }}
+        sx={{ 
+          padding: 0, 
+          textTransform: 'none', 
+          height: '30px' 
+        }}
       >
         View
       </Button>

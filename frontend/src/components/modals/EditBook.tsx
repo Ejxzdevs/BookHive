@@ -66,7 +66,7 @@ const EditBook: React.FC<FormProps> = ({ data }) => {
     <Box>
       <Button 
         variant="outlined" 
-        color="primary" 
+        color="secondary"
         onClick={openViewModal} 
         sx={{ padding: 0, textTransform: 'none', width: '60px', height: '30px' }}
         >

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Box } from "@mui/material";
+import { Container, Box, Typography } from "@mui/material";
 import TableData from '../components/tables/TableData';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
@@ -34,7 +34,10 @@ const Product: React.FC = () => {
       <Sidebar />
       <Box className="flex flex-grow flex-col">
         <Header />
-        <Box className="flex justify-end pt-5 pe-6">
+        <Box className="flex justify-between items-center pt-5 px-6">
+          <Typography variant="h5" color="initial">
+            Book List
+          </Typography>
           <AddBook />
         </Box>
         {loading && <p>Loading...</p>}

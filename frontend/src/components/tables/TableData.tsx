@@ -3,7 +3,8 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { Container, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import EditBook from '../modals/EditBook';
 import { Book } from '../../types/bookInterface';
-import { deleteBook as deleteBookApi } from '../../services/bookApi'; // Renaming to avoid naming conflict
+import { deleteBook as deleteBookApi } from '../../services/bookApi';
+import ViewBook from '../modals/ViewBook';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -77,9 +78,10 @@ const TableData: React.FC<TableProps> = ({ headers, data }) => {
                       gap: 2,
                     }}
                   >
+                    <ViewBook data={[book]} />
                     <EditBook data={[book]} />
                     <Button 
-                      onClick={() => deleteBook(book.book_id)} // Pass the book ID correctly
+                      onClick={() => deleteBook(book.book_id)}
                       variant="outlined" 
                       color="error" 
                       sx={{ padding: 0, textTransform: 'none', width: '60px', height: '30px' }}

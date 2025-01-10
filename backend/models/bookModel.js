@@ -3,7 +3,7 @@ const connect = require('../config/db');
 class Book {
 
     static async getAllBooks() {
-        const query = "SELECT * FROM BOOKS";
+        const query = "SELECT books.*, COUNT(requests.request_id) AS request_count FROM books LEFT JOIN requests ON requests.book_id = books.book_id GROUP BY books.book_id;";
         try {
             const [results] = await connect.promise().query(query);
             return results; 

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -10,4 +12,7 @@ html,body {
     height: 100vh;
     overflow-y: auto;
     backgroud-color: #ffffff;
+
+   
 }
+
