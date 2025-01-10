@@ -5,7 +5,7 @@ import {  useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import SettingsIcon from '@mui/icons-material/Settings';
-
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const Header = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -27,7 +27,8 @@ const Header = () => {
       className="border-b border-gray-500 h-[60px] flex items-center justify-end"
       sx={{ backgroundColor: '#19B37E' }}
     >
-        <AccountCircleIcon onClick={openOption}  sx={{ fontSize: 35 }}  className="text-white cursor-pointer me-4"  />
+        <NotificationsIcon sx={{ fontSize: 25 }}  className="text-white cursor-pointer me-4"  />
+        <AccountCircleIcon onClick={openOption}  sx={{ fontSize: 25 }}  className="text-white cursor-pointer me-4"  />
       {open ? (
         <Box className="
         top-12 right-3 h-[250px] w-[225px] shadow-xl 
@@ -35,7 +36,7 @@ const Header = () => {
         duration-300
         z-10
         ">
-           <ListItem className=' border flex flex-row gap-2 hover:text-[#19B37E] focus:text-[#19B37E]' onClick={logout}>
+           <ListItem className=' border flex flex-row gap-2 hover:text-[#19B37E] focus:text-[#19B37E]'>
                   <Box><SettingsIcon sx={{color: '#19B37E'}} /></Box>
                   <Typography component="span">Settings</Typography>
             </ListItem>
