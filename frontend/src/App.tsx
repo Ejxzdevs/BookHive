@@ -6,8 +6,8 @@ import EnduserAbout from './pages/EnduserAbout';
 import EnduserContact from './pages/EnduserContact';
 import EndUserBooks from './pages/EndUserBooks';
 import Navigation from "./components/Navigation";
-import Dashboard from './pages/dashboard';
-import Product from './pages/product';
+import Dashboard from './pages/Dashboard';
+import Product from './pages/Product';
 import Request from './pages/Request';
 import Footer from './components/Footer';
 import Login from './pages/Login';
@@ -41,7 +41,7 @@ function App() {
           <Route path="/Contact" element={<EnduserContact />} />
           <Route path="/admin" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/product" element={<Product />} />
+          <Route path="/products" element={<Product />} />
           <Route path="/request" element={<Request />} />
         </Routes>
       </Box>
