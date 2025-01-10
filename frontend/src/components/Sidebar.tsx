@@ -6,6 +6,9 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SendIcon from '@mui/icons-material/Send';
 import { Box , Button, List, Typography } from '@mui/material';
 import Logo from '../assets/Books.png';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
+import PieChartIcon from '@mui/icons-material/PieChart';
+
 
 interface Menu {
   name: string;
@@ -14,9 +17,11 @@ interface Menu {
 }
 
 const Menus: Menu[] = [
-  { name: 'Dashboard', icon: <HomeIcon />, path: '/dashboard' },
-  { name: 'Books', icon: <BookIcon />, path: '/product' },
-  { name: 'Request', icon: <SendIcon  />, path: '/request' },
+  { name: 'Dashboard', icon: <HomeIcon/>, path: '/dashboard' },
+  { name: 'Books', icon: <BookIcon/>, path: '/products' },
+  { name: 'Request', icon: <SendIcon/>, path: '/request' },
+  { name: 'News', icon: <NewspaperIcon/>, path: '/news' },
+  { name: 'Reports', icon: <PieChartIcon/>, path: '/reports' },
 ];
 
 const Sidebar: React.FC = () => {
