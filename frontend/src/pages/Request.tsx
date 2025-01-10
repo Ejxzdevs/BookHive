@@ -33,8 +33,8 @@ const Request: React.FC = () => {
     <Box className="flex flex-grow flex-col">
       <Header />
       <Box className="flex justify-between items-center pt-5 px-6">
-        <Typography variant="h5" color="initial">
-          Request List
+        <Typography sx={{fontFamily: 'Inter' , fontWeight: '500'}} variant="h5" color="initial">
+            Request List
         </Typography>
       </Box>
       {loading && <p>Loading...</p>}
