@@ -43,8 +43,8 @@ const Sidebar: React.FC = () => {
         <List className='cursor-pointer'>
           {Menus.map((menu, index) => {
             return (
-                <NavLink className='border p-4 flex flex-row gap-2 hover:text-[#19B37E] focus:text-[#19B37E]'  to={menu.path} key={index}>
-                  <Box>{menu.icon}</Box>
+                <NavLink className='border p-4 flex flex-row gap-2 hover:text-[#37ad84] focus:text-[#19B37E]'  to={menu.path} key={index}>
+                  <Box sx={{color: '#19B37E'}} >{menu.icon}</Box>
                   <Typography component="span" className={`${open ? "block" : "hidden"}`}>{menu.name}</Typography>
                 </NavLink>
             );
