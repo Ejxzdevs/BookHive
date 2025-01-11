@@ -2,7 +2,7 @@ const NewsModel = require('../models/newsModel');
 
 class NewsController {
 
-  // GET ALL BOOKS
+  // GET NEWS
   getNews = async (req, res) => {
     try {
       const data = await NewsModel.getAllNews();
@@ -12,7 +12,7 @@ class NewsController {
     }
   };
 
-  // ADD NEW BOOK
+  // ADD NEWS
   addNews = async (req, res) => {
     const { news_title, news_content } = req.body;
     let image_url = (req.file && req.file.filename) ? `${req.file.filename}` : '';
@@ -26,21 +26,21 @@ class NewsController {
     }
   };
   // UPDATE BOOK
-  updatebook = async (req , res) => {
-    const { book_title, book_description , genre , author, } = req.body;
+  updateNews = async (req , res) => {
+    const { news_title, news_content } = req.body;
     let image_url = (req.file && req.file.filename) ? `${req.file.filename}` : '';
-    const book_id = req.params.id
-    const updateBook = {book_id, book_title, book_description , genre ,author ,image_url};
+    const news_id = req.params.id
+    const updateNews = {news_id, news_title, news_content ,image_url};
     
     try {
-      const result = await BookModel.updateBook(updateBook);
-      res.status(200).json({ message: 'Book updated successfully', result });
+      const result = await NewsModel.updateNews(updateNews);
+      res.status(200).json({ message: 'News updated successfully', result });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
   }
 
-  // DELETE BOOK
+  // DELETE NEWS
   deleteNews = async (req , res) => {
     const news_id = req.params.id
 
