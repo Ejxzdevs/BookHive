@@ -3,6 +3,8 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
 import {  NewsArrProps } from '../../types/newsInterface'
 import { deleteNews } from '../../services/newsApi';
+import ViewNews from '../modals/ViewNews';
+import EditNews from '../modals/EditNews';
 
 
 
@@ -82,7 +84,8 @@ const NewsData: React.FC<NewsArrProps> = ({ data }) => {
                       gap: 2,
                     }}
                   >
-            
+                    <EditNews data={[news]}/>
+                    <ViewNews data={[news]}/>
                     <Button 
                       onClick={()=> delNews(news.news_id)}
                       variant="outlined" 
