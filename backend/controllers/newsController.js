@@ -1,11 +1,11 @@
 const NewsModel = require('../models/newsModel');
 
-class BookController {
+class NewsController {
 
   // GET ALL BOOKS
-  getBooks = async (req, res) => {
+  getNews = async (req, res) => {
     try {
-      const data = await BookModel.getAllBooks();
+      const data = await NewsModel.getAllNews();
       res.json(data); 
     } catch (err) {
       res.status(500).json({ error: err.message });
@@ -41,12 +41,12 @@ class BookController {
   }
 
   // DELETE BOOK
-  deleteBook = async (req , res) => {
-    const book_id = req.params.id
+  deleteNews = async (req , res) => {
+    const news_id = req.params.id
 
     try {
-      const result = await BookModel.deleteBook(book_id);
-      res.status(200).json({ message: 'Book deleted successfully', result });
+      const result = await NewsModel.deleteNews(news_id);
+      res.status(200).json({ message: 'News deleted successfully', result });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
@@ -54,4 +54,4 @@ class BookController {
   }
 }
 
-module.exports = new BookController();
+module.exports = new NewsController();
