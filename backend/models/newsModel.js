@@ -2,6 +2,7 @@ const connect = require('../config/db');
 
 class News {
 
+    // GET
     static async getAllNews() {
         const query = "SELECT * FROM news";
         try {
@@ -12,6 +13,7 @@ class News {
         }
     }
 
+    // ADD
     static async insertNews(news) {
         const query = "INSERT INTO news (news_title, news_content, news_image) VALUES (?)";
         const values = [news.news_title, news.news_content ,news.image_url];
@@ -23,23 +25,25 @@ class News {
         }
     }
 
-    static async updateBook(book) {
+    // UPDATE
+    static async updateNews(news) {
         const query = `
-        UPDATE books
-        SET book_title = ?, book_description = ?, genre = ?, author = ?, image_url = COALESCE(?, image_url)
-        WHERE book_id = ?
+        UPDATE news
+        SET news_title = ?, news_content = ?, news_image = COALESCE(?, news_image)
+        WHERE news_id = ?
         `;
-        const values = [book.book_title, book.book_description, book.genre, book.author, book.image_url ? book.image_url : null, book.book_id];
+        const values = [news.news_title, news.news_content, news.image_url ? news.image_url : null, news.news_id];
         
         try {
             const [result] = await connect.promise().query(query, values);
             return result;
         } catch (error) {
-            console.error('Error updating book: ', error);
-            throw new Error('Error updating book');
+            console.error('Error updating news: ', error);
+            throw new Error('Error updating news');
         }
     }
 
+    // DELETE
     static async deleteNews(id) {
         const query = " DELETE FROM news WHERE news_id = ? ";
         const value = [id];
