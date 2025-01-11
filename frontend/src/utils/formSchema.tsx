@@ -38,3 +38,14 @@ export const RequestSchema = z.object({
 });
 
 export type RequestFormData = z.infer<typeof RequestSchema>;
+
+// SCHEMA FOR NEWS
+export const NewsSchema = z.object({
+  book_id: z.string().min(1, "Book ID must be a positive integer"),
+  fullname: z.string().min(1, "Fullname is required"), 
+  request_email: z.string().min(1, "Email is required"),
+  phone_number: z.string().min(1, "Phone is required"),
+  request_message: z.string().optional(),
+});
+
+export type NewsFormData = z.infer<typeof NewsSchema>;
