@@ -2,13 +2,13 @@ const connect = require('../config/db');
 
 class News {
 
-    static async getAllBooks() {
-        const query = "SELECT books.*, COUNT(requests.request_id) AS request_count FROM books LEFT JOIN requests ON requests.book_id = books.book_id GROUP BY books.book_id;";
+    static async getAllNews() {
+        const query = "SELECT * FROM news";
         try {
             const [results] = await connect.promise().query(query);
             return results; 
         } catch (error) {
-            throw new Error('Error fetching books');
+            throw new Error('Error fetching News');
         }
     }
 
@@ -40,15 +40,15 @@ class News {
         }
     }
 
-    static async deleteBook (id) {
-        const query = " DELETE FROM books WHERE book_id = ? ";
+    static async deleteNews(id) {
+        const query = " DELETE FROM news WHERE news_id = ? ";
         const value = [id];
         try {
             const [result] = await connect.promise().query(query,value)
             return result;
         } catch (error) {
-            console.error('Error deleting book: ', error);
-            throw new Error('Error deleting book');
+            console.error('Error deleting news: ', error);
+            throw new Error('Error deleting news');
         }
     }
 }
