@@ -15,6 +15,37 @@ export const getAllNews = async () => {
   }
 }
 
+// INSERT NEWS
+export const insertNews = async (data: { news_title: string; news_content: string; image_url: File; }) => {
+  try {
+    const formData = new FormData();
+    formData.append('news_title', data.news_title);
+    formData.append('news_content', data.news_content);
+    formData.append('image_url', data.image_url);
+    const response = await apiClient.post('/news/add', formData);
+
+    return response.data; 
+  } catch (error) {
+    console.error('Error inserting book:', error);
+    throw error; 
+  }
+};
+
+export const updateNews = async (data: { news_title: string; news_content: string; image: File | string ; news_id: number | undefined }) => {
+  try {
+    const formData = new FormData();
+    formData.append('news_title', data.news_title);
+    formData.append('news_content', data.news_content);
+    formData.append('image_url', data.image ? data.image : '');
+    const response = await apiClient.patch(`/news/update/${data.news_id}`, formData);
+    return response.data; 
+  } catch (error) {
+    console.error('Error updating news:', error);
+    throw error; 
+  }
+};
+
+// DELETE NEWS
 export const deleteNews = async ({ id }: { id: number }) => {
   try {
     const response = await apiClient.delete(`/news/delete/${id}`);
