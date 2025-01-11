@@ -38,3 +38,12 @@ export const RequestSchema = z.object({
 });
 
 export type RequestFormData = z.infer<typeof RequestSchema>;
+
+// SCHEMA FOR NEWS
+export const NewsSchema = z.object({
+  news_id: z.number().optional(), 
+  news_title: z.string().min(1, "Title is required"), 
+  news_content: z.string().min(1, "Content is required"),
+});
+
+export type NewsFormData = z.infer<typeof NewsSchema>;

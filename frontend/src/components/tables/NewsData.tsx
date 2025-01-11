@@ -1,9 +1,11 @@
 import { Container, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
-import {  RequestArrProps} from '../../types/requestInterface'
-import ViewRequest from '../modals/ViewRequest';
-import { deleteRequest } from '../../services/requestApi'; 
+import {  NewsArrProps } from '../../types/newsInterface'
+import { deleteNews } from '../../services/newsApi';
+import ViewNews from '../modals/ViewNews';
+import EditNews from '../modals/EditNews';
+
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -30,17 +32,18 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
-const RequestData: React.FC<RequestArrProps> = ({ data }) => {
+const NewsData: React.FC<NewsArrProps> = ({ data }) => {
 
-  const delRequest = async (id: number) => {
-      try {
-        const response = await deleteRequest({id});
-        console.log('Request deleted successfully:', response);
-        window.location.reload();
-      } catch (error) {
-        console.error('Error deleting Request:', error);
-      }
-    };
+   const delNews = async (id: number) => {
+        try {
+          const response = await deleteNews({id});
+          console.log('Request deleted successfully:', response);
+          window.location.reload();
+        } catch (error) {
+          console.error('Error deleting Request:', error);
+        }
+      };
+
 
   
   return (
@@ -50,13 +53,10 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
           <TableHead>
             <TableRow>
                 <TableCell align="center" >
-                    Request ID
+                     ID
                 </TableCell>
                 <TableCell align="center" >
-                    Full Name
-                </TableCell>
-                <TableCell align="center" >
-                    Phone Number
+                    Title
                 </TableCell>
                 <TableCell align="center" >
                     Date
@@ -67,14 +67,13 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((request) => {
+            {data.map((news) => {
               return (
-                <StyledTableRow key={request.request_id}>
-                  <StyledTableCell align="center">{request.request_id}</StyledTableCell>
-                  <StyledTableCell align="center">{request.fullname}</StyledTableCell>
-                  <StyledTableCell align="center">{request.phone_number}</StyledTableCell>
+                <StyledTableRow key={news.news_id}>
+                  <StyledTableCell align="center">{news.news_id}</StyledTableCell>
+                  <StyledTableCell align="center">{news.news_title}</StyledTableCell>
                   <StyledTableCell align="center">
-                    {new Date(request.request_date).toLocaleDateString()}
+                    {new Date(news.news_date).toLocaleDateString()}
                   </StyledTableCell>
                   <StyledTableCell
                     sx={{
@@ -85,9 +84,10 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
                       gap: 2,
                     }}
                   >
-                    <ViewRequest data={[request]} />
+                    <EditNews data={[news]}/>
+                    <ViewNews data={[news]}/>
                     <Button 
-                      onClick={() => delRequest(request.request_id)} 
+                      onClick={()=> delNews(news.news_id)}
                       variant="outlined" 
                       color="error" 
                       sx={{ padding: 0, textTransform: 'none', width: '60px', height: '30px' }}
@@ -105,4 +105,4 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
   )
 }
 
-export default RequestData
+export default NewsData;

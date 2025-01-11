@@ -32,11 +32,13 @@ const ViewBook : React.FC<FormProps> = ({ data }) => {
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <Box className="flex justify-end">
-          <Button className="left-0" color="primary" onClick={handleClose}>
+          <Button className="left-0" color="error" onClick={handleClose}>
             <CloseIcon />
           </Button>
         </Box>
-        <Box className="pl-[22px]" sx={{ margin: '0' }}>
+        <DialogContent >
+        <DialogTitle className="text-center my-0">Book Details</DialogTitle>
+        <Box className="mb-10">
           <Typography variant="h5">{data[0].book_title}</Typography>
           <Typography variant="body1" component="div" sx={{ color: 'text.secondary', margin: '0' }}>
             Date Release:{" "}
@@ -47,9 +49,7 @@ const ViewBook : React.FC<FormProps> = ({ data }) => {
               : 'No release date'}
           </Typography>
         </Box>
-        <DialogTitle className="text-center">Book Details</DialogTitle>
-        <DialogContent >
-          <Box className="flex items-center justify-center">
+          <Box className="flex items-center justify-center mb-10">
             <img
               className="h-[250px] w-[180px]"
               src={`http://localhost:8080/${data[0].image_url}`}

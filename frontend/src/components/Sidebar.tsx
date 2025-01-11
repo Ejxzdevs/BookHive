@@ -6,17 +6,22 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SendIcon from '@mui/icons-material/Send';
 import { Box , Button, List, Typography } from '@mui/material';
 import Logo from '../assets/Books.png';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
+import PieChartIcon from '@mui/icons-material/PieChart';
+
 
 interface Menu {
   name: string;
-  icon: JSX.Element;  // Make sure the icon is of JSX.Element type
+  icon: JSX.Element;
   path: string;
 }
 
 const Menus: Menu[] = [
-  { name: 'Dashboard', icon: <HomeIcon />, path: '/dashboard' },
-  { name: 'Books', icon: <BookIcon />, path: '/product' },
-  { name: 'Request', icon: <SendIcon  />, path: '/request' },
+  { name: 'Dashboard', icon: <HomeIcon/>, path: '/dashboard' },
+  { name: 'Books', icon: <BookIcon/>, path: '/products' },
+  { name: 'Request', icon: <SendIcon/>, path: '/request' },
+  { name: 'News', icon: <NewspaperIcon/>, path: '/news' },
+  { name: 'Reports', icon: <PieChartIcon/>, path: '/reports' },
 ];
 
 const Sidebar: React.FC = () => {
@@ -35,7 +40,7 @@ const Sidebar: React.FC = () => {
            }} className={` ${open ? "block" : "hidden"}`} >
             BookHive
             </Typography>
-        <Button onClick={() => setOpen(!open)} className={` text-white  absolute  ${open ? "left-[30px]" : "right-[24px]"}`} >
+        <Button onClick={() => setOpen(!open)} className={` text-white  absolute  ${open ? "left-[25px] transform -rotate-180" : "right-[24px]"}`} >
           <ArrowForwardIcon/>
         </Button>
       </Box>
@@ -43,9 +48,9 @@ const Sidebar: React.FC = () => {
         <List className='cursor-pointer'>
           {Menus.map((menu, index) => {
             return (
-                <NavLink className='border p-4 flex flex-row gap-2 hover:text-[#19B37E] focus:text-[#19B37E]'  to={menu.path} key={index}>
-                  <Box>{menu.icon}</Box>
-                  <Typography component="span" className={`${open ? "block" : "hidden"}`}>{menu.name}</Typography>
+                <NavLink className='border p-4 flex flex-row gap-2 hover:text-[#37ad84] focus:text-[#19B37E]'  to={menu.path} key={index}>
+                  <Box sx={{color: '#19B37E'}} >{menu.icon}</Box>
+                  <Typography sx={{fontFamily: 'Inter'}} component="span" className={`${open ? "block" : "hidden"}`}>{menu.name}</Typography>
                 </NavLink>
             );
           })}
