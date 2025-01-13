@@ -24,6 +24,19 @@ class reportController {
       res.status(500).json({ error: err.message });
     }
   };
+
+   // DELETE REPORTS
+   deleteReport = async (req , res) => {
+    const report_id = req.params.id
+
+    try {
+      const result = await ReportModel.deleteReport(report_id);
+      res.status(200).json({ message: 'Report deleted successfully', result });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+
+  }
 }
 
 module.exports = new reportController();
