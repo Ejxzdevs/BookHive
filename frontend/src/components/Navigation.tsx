@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { Box, AppBar, Toolbar, Button, Typography } from '@mui/material';
-
+import Logo from '../assets/Books.png';
 interface Menu {
   name: string;
   path: string;
@@ -18,10 +18,10 @@ const Navigation = () => {
     <AppBar className='h-[60px]' position="sticky" sx={{ backgroundColor: '#19B37E' }}>
       <Toolbar>
         {/* Logo or brand name */}
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          My App
+        <img src={Logo} alt="LOGO" className='h-[30px]'/>
+        <Typography variant="h6" sx={{ flexGrow: 1 , fontFamily: 'Rubik Vinyl' }}>
+          BookHive
         </Typography>
-
         {/* Navigation Links */}
         <Box sx={{ display: 'flex', gap: 2 }}>
           {Menus.map((menu, index) => (
@@ -33,7 +33,7 @@ const Navigation = () => {
                 color: isActive ? '#fff' : '#ccc',
               })}
             >
-              <Button sx={{ color: 'white' }}>{menu.name}</Button>
+              <Button className='Inter' sx={{ color: 'white' }}>{menu.name}</Button>
             </NavLink>
           ))}
         </Box>

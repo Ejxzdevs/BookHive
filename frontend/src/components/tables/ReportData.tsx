@@ -1,11 +1,8 @@
 import { Container, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
-import {  NewsArrProps } from '../../types/newsInterface'
-import { deleteNews } from '../../services/newsApi';
-import ViewNews from '../modals/ViewNews';
-import EditNews from '../modals/EditNews';
-
+import { ReportArrProps } from '../../types/reportInterface'
+import { deleteReport } from '../../services/reportApi';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -32,18 +29,19 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
-const NewsData: React.FC<NewsArrProps> = ({ data }) => {
+const ReportData: React.FC<ReportArrProps> = ({ data }) => {
 
-   const delNews = async (id: number) => {
-        try {
-          const response = await deleteNews({id});
-          console.log('News deleted successfully:', response);
-          window.location.reload();
-        } catch (error) {
-          console.error('Error deleting News:', error);
-        }
-      };
+  const delReport = async (id: number) => {
+          try {
+            const response = await deleteReport({id});
+            console.log('Report deleted successfully:', response);
+            window.location.reload();
+          } catch (error) {
+            console.error('Error deleting Report:', error);
+          }
+        };
 
+  
 
   
   return (
@@ -53,10 +51,10 @@ const NewsData: React.FC<NewsArrProps> = ({ data }) => {
           <TableHead>
             <TableRow>
                 <TableCell align="center" >
-                     ID
+                    ID
                 </TableCell>
                 <TableCell align="center" >
-                    Title
+                    Report
                 </TableCell>
                 <TableCell align="center" >
                     Date
@@ -67,13 +65,13 @@ const NewsData: React.FC<NewsArrProps> = ({ data }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((news) => {
+            {data.map((report) => {
               return (
-                <StyledTableRow key={news.news_id}>
-                  <StyledTableCell align="center">{news.news_id}</StyledTableCell>
-                  <StyledTableCell align="center">{news.news_title}</StyledTableCell>
+                <StyledTableRow key={report.report_id}>
+                  <StyledTableCell align="center">{report.report_id}</StyledTableCell>
+                  <StyledTableCell align="center">{report.report_name}</StyledTableCell>
                   <StyledTableCell align="center">
-                    {new Date(news.news_date).toLocaleDateString()}
+                    {new Date(report.report_date).toLocaleDateString()}
                   </StyledTableCell>
                   <StyledTableCell
                     sx={{
@@ -84,10 +82,8 @@ const NewsData: React.FC<NewsArrProps> = ({ data }) => {
                       gap: 2,
                     }}
                   >
-                    <EditNews data={[news]}/>
-                    <ViewNews data={[news]}/>
-                    <Button 
-                      onClick={()=> delNews(news.news_id)}
+                    <Button
+                      onClick={ ()=> delReport(report.report_id)}
                       variant="outlined" 
                       color="error" 
                       sx={{ padding: 0, textTransform: 'none', width: '60px', height: '30px' }}
@@ -105,4 +101,4 @@ const NewsData: React.FC<NewsArrProps> = ({ data }) => {
   )
 }
 
-export default NewsData;
+export default ReportData;
