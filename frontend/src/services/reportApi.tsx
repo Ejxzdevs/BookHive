@@ -21,7 +21,7 @@ export const getAllReport = async () => {
 }
 
 
-// INSERT REPORTS
+// INSERT REPORT
 export const insertReport = async (data: { report_name: string; }) => {
   try {
     const response = await apiClient.post('/report/add', data);
@@ -29,5 +29,15 @@ export const insertReport = async (data: { report_name: string; }) => {
   } catch (error) {
     console.error('Error while inseting report:', error);
     throw error; 
+  }
+};
+// DELETE REPORT
+export const deleteReport = async ({ id }: { id: number }) => {
+  try {
+    const response = await apiClient.delete(`/report/delete/${id}`);
+    return response.data; 
+  } catch (error) {
+    console.error('Error deleting report:', error);
+    throw new Error('There was an error deleting the report. Please try again.');
   }
 };
