@@ -4,17 +4,20 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Navigation from "./components/Navigation";
 import { Box } from '@mui/material';
-
+import Footer from './components/Footer';
 // PAGES
+// END USER
 import EnduserHome from './pages/EnduserHome';
 import EnduserAbout from './pages/EnduserAbout';
 import EnduserContact from './pages/EnduserContact';
 import EndUserBooks from './pages/EndUserBooks';
+
+// ADMIN
 import Dashboard from './pages/Dashboard';
 import News from './pages/News';
 import Product from './pages/Product';
 import Request from './pages/Request';
-import Footer from './components/Footer';
+import Report from './pages/Report'
 import Login from './pages/Login';
 
 
@@ -47,11 +50,12 @@ function App() {
           <Route path="/Contact" element={<EnduserContact />} />
     
           {/* ADMIN PANEL */}
-          <Route path="/admin" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/products" element={<Product />} />
-          <Route path="/request" element={<Request />} />
-          <Route path="/news" element={<News />} />
+          <Route path="/admin" element={<Login/>} />
+          <Route path="/dashboard" element={<Dashboard/>} />
+          <Route path="/products" element={<Product/>} />
+          <Route path="/request" element={<Request/>} />
+          <Route path="/news" element={<News/>} />
+          <Route path="/reports" element={<Report/>} />
         </Routes>
       </Box>
       

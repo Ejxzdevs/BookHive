@@ -47,3 +47,11 @@ export const NewsSchema = z.object({
 });
 
 export type NewsFormData = z.infer<typeof NewsSchema>;
+
+// SCHEMA FOR REPORTS
+export const ReportSchema = z.object({
+  report_id: z.number().optional(),
+  report_name: z.string().min(1, "Report is required"), 
+});
+
+export type ReportFormData = z.infer<typeof ReportSchema>;
