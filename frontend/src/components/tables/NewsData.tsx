@@ -37,10 +37,10 @@ const NewsData: React.FC<NewsArrProps> = ({ data }) => {
    const delNews = async (id: number) => {
         try {
           const response = await deleteNews({id});
-          console.log('Request deleted successfully:', response);
+          console.log('News deleted successfully:', response);
           window.location.reload();
         } catch (error) {
-          console.error('Error deleting Request:', error);
+          console.error('Error deleting News:', error);
         }
       };
 
