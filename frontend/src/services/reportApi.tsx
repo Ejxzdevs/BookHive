@@ -9,7 +9,19 @@ const apiClient = axios.create({
   },
 });
 
-// API function to send inquiry data
+// GET ALL REPORTS
+export const getAllReport = async () => {
+  try {
+    const response = await apiClient.get('/report');
+    return response.data; 
+  } catch (error) {
+    console.error('Error fetching Report:', error);
+    throw error;
+  }
+}
+
+
+// INSERT REPORTS
 export const insertReport = async (data: { report_name: string; }) => {
   try {
     const response = await apiClient.post('/report/add', data);
