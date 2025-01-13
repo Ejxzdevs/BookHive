@@ -2,6 +2,7 @@ import { Container, Table, TableBody, TableContainer, TableHead, TableRow, Paper
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
 import { ReportArrProps } from '../../types/reportInterface'
+import { deleteReport } from '../../services/reportApi';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -29,6 +30,18 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }));
 
 const ReportData: React.FC<ReportArrProps> = ({ data }) => {
+
+  const delReport = async (id: number) => {
+          try {
+            const response = await deleteReport({id});
+            console.log('Report deleted successfully:', response);
+            window.location.reload();
+          } catch (error) {
+            console.error('Error deleting Report:', error);
+          }
+        };
+
+  
 
   
   return (
@@ -69,8 +82,8 @@ const ReportData: React.FC<ReportArrProps> = ({ data }) => {
                       gap: 2,
                     }}
                   >
-              
-                    <Button  
+                    <Button
+                      onClick={ ()=> delReport(report.report_id)}
                       variant="outlined" 
                       color="error" 
                       sx={{ padding: 0, textTransform: 'none', width: '60px', height: '30px' }}
