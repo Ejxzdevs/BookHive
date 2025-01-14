@@ -9,7 +9,18 @@ const apiClient = axios.create({
   },
 });
 
-// API function to send inquiry data
+// GET INQUIRIES
+export const getAllInquiry = async () => {
+  try {
+    const response = await apiClient.get('/inquiries');
+    return response.data; 
+  } catch (error) {
+    console.error('Error fetching inquiry:', error);
+    throw error;
+  }
+}
+
+// INSERT INQUIRY
 export const postInquiry = async (data: { inquiry_name: string; inquiry_email: string; inquiry_message: string }) => {
   try {
     const response = await apiClient.post('/inquiries/add', data);
