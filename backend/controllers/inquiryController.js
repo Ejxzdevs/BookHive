@@ -23,6 +23,19 @@ class InquiryController {
       res.status(500).json({ error: err.message });
     }
   };
+
+  // DELETE INQUIRY
+  deleteInquiry = async (req, res) => {
+    const id = req.params.id
+
+    try {
+      const result = await InquiryModel.deleteInquiry(id);
+      res.status(200).json({ message: 'Inquiry deleted successfully', result });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+
+  }
 }
 
 module.exports = new InquiryController();
