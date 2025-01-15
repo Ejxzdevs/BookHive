@@ -23,6 +23,17 @@ class Request {
         }
     }
 
+    static async updateRequestStatus(id) {
+        const query = "UPDATE REQUESTS SET request_status = ? WHERE request_id = ?";
+        const values = ['Approved', id];
+        try {
+            const [result] = await connect.promise().query(query,values);
+            return result;
+        } catch (error) {
+            throw new Error('Error updating request');
+        }
+    }
+
     static async deleteRequest(id) {
         const query = " DELETE FROM requests WHERE request_id = ? ";
         const value = [id];
