@@ -8,6 +8,7 @@ import { Box , Button, List, Typography } from '@mui/material';
 import Logo from '../assets/Books.png';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import PieChartIcon from '@mui/icons-material/PieChart';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
 
 interface Menu {
@@ -20,7 +21,7 @@ const Menus: Menu[] = [
   { name: 'Dashboard', icon: <HomeIcon/>, path: '/dashboard' },
   { name: 'Books', icon: <BookIcon/>, path: '/products' },
   { name: 'Request', icon: <SendIcon/>, path: '/request' },
-  { name: 'Inquiry', icon: <SendIcon/>, path: '/inquiry' },
+  { name: 'Inquiry', icon: <HelpOutlineIcon/>, path: '/inquiry' },
   { name: 'News', icon: <NewspaperIcon/>, path: '/news' },
   { name: 'Reports', icon: <PieChartIcon/>, path: '/reports' },
 ];

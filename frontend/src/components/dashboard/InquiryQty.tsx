@@ -1,5 +1,5 @@
 import { Box , Typography } from '@mui/material'
-import BookIcon from '@mui/icons-material/Book';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { getAllInquiry } from '../../services/contactApi';
 import { useEffect, useState } from 'react';
 import { Inquiry } from '../../types/inquiryInterface';
@@ -33,7 +33,7 @@ const InquiryQuantities = () => {
             </Typography>
         </Box>
         <Box className="flex items-center justify-center ps-7 w-[50%]" >
-            <BookIcon sx={{color: '#19B37E', fontSize: 70 }} />
+            <HelpOutlineIcon sx={{color: '#19B37E', fontSize: 70 }} />
         </Box>
     </Box>
   )

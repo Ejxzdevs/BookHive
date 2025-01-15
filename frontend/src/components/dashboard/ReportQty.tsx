@@ -1,8 +1,8 @@
 import { Box , Typography } from '@mui/material'
-import BookIcon from '@mui/icons-material/Book';
 import { getAllReport } from '../../services/reportApi';
 import { useEffect, useState } from 'react';
 import { Report } from '../../types/reportInterface';
+import PieChartIcon from '@mui/icons-material/PieChart';
 
 const ReportQuantities = () => {
     const [Report, setReport] = useState<Report[]>([]);
@@ -33,7 +33,7 @@ const ReportQuantities = () => {
             </Typography>
         </Box>
         <Box className="flex items-center justify-center ps-7 w-[50%]" >
-            <BookIcon sx={{color: '#19B37E', fontSize: 70 }} />
+            <PieChartIcon sx={{color: '#19B37E', fontSize: 70 }} />
         </Box>
     </Box>
   )

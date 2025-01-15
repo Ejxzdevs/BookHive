@@ -1,5 +1,5 @@
 import { Box , Typography } from '@mui/material'
-import BookIcon from '@mui/icons-material/Book';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
 import { getAllNews } from '../../services/newsApi';
 import { useEffect, useState } from 'react';
 import { News } from '../../types/newsInterface';
@@ -33,7 +33,7 @@ const NewQuantities = () => {
             </Typography>
         </Box>
         <Box className="flex items-center justify-center ps-7 w-[50%]" >
-            <BookIcon sx={{color: '#19B37E', fontSize: 70 }} />
+            <NewspaperIcon sx={{color: '#19B37E', fontSize: 70 }} />
         </Box>
     </Box>
   )
