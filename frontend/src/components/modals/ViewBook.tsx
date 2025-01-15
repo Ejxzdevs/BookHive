@@ -1,4 +1,4 @@
-import { Box, Button, Dialog, DialogContent, DialogTitle, Typography } from '@mui/material';
+import { Box, Button, Dialog, DialogContent, Typography } from '@mui/material';
 import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { FormProps } from '../../types/bookInterface'
@@ -30,18 +30,22 @@ const ViewBook : React.FC<FormProps> = ({ data }) => {
       >
         View
       </Button>
-      <Dialog open={open} onClose={handleClose}>
-        <Box className="flex justify-end">
-          <Button className="left-0" color="error" onClick={handleClose}>
-            <CloseIcon />
+      <Dialog open={open} >
+      <Box className="flex justify-between items-end py-3">
+          <Typography sx={{marginLeft: 2, fontFamily: 'Inter'}} variant="h5" >
+            Book Details
+          </Typography>
+          <Button color="error" onClick={handleClose}>
+            <CloseIcon   />
           </Button>
         </Box>
-        <DialogContent >
-        <DialogTitle className="text-center my-0">Book Details</DialogTitle>
-        <Box className="mb-10">
-          <Typography variant="h5">{data[0].book_title}</Typography>
-          <Typography variant="body1" component="div" sx={{ color: 'text.secondary', margin: '0' }}>
-            Date Release:{" "}
+        <DialogContent sx={{ padding: 0}} >
+        <Box className="ps-4">
+          <Typography sx={{fontFamily: 'Inter'}} variant="body2">
+            Title: {data[0].book_title}
+            </Typography>
+          <Typography  sx={{fontFamily: 'Inter'}} variant="body2" component="div">
+            Date Added: {" "}
             {data[0].book_release
               ? isNaN(new Date(data[0].book_release).getTime())
                 ? 'Invalid release date'
@@ -49,25 +53,21 @@ const ViewBook : React.FC<FormProps> = ({ data }) => {
               : 'No release date'}
           </Typography>
         </Box>
-          <Box className="flex items-center justify-center mb-10">
+        <Box className="rounded-sm p-4 ">
             <img
-              className="h-[250px] w-[180px]"
+              className="max-h-[550px] w-full shadow-lg"
               src={`http://localhost:8080/${data[0].image_url}`}
               alt={data[0].book_title}
             />
           </Box>
-          <Box className="flex flex-row justify-between items-center gap-5 mt-2">
-            <Box>
+          <Box className="flex flex-col mt-1 px-4 pb-8">
               <Typography gutterBottom variant="body1" component="div" sx={{ margin: '0' }}>
                 Author: {data[0].author}
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary', margin: '0' }}>
                 Genre: {data[0].genre}
               </Typography>
-            </Box>
-          </Box>
-          <Box>
-            <Typography variant="body1" sx={{ color: 'text.secondary', marginTop: '20px' }}>
+              <Typography variant="caption" sx={{ color: 'text.secondary', marginTop: '10px' }}>
               {data[0].book_description}
             </Typography>
           </Box>
