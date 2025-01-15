@@ -3,6 +3,7 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
 import {  InquiryArrProps } from '../../types/inquiryInterface'
 import { deleteInquiry } from '../../services/contactApi'
+import ViewInquiry from '../modals/ViewInquiry';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -52,7 +53,10 @@ const InquiryData: React.FC<InquiryArrProps> = ({ data }) => {
                      ID
                 </TableCell>
                 <TableCell align="center" >
-                    Email
+                    name
+                </TableCell>
+                <TableCell align="center" >
+                    Status
                 </TableCell>
                 <TableCell align="center" >
                     Date
@@ -67,7 +71,8 @@ const InquiryData: React.FC<InquiryArrProps> = ({ data }) => {
               return (
                 <StyledTableRow key={inquiry.inquiry_id}>
                   <StyledTableCell align="center">{inquiry.inquiry_id}</StyledTableCell>
-                  <StyledTableCell align="center">{inquiry.inquiry_email}</StyledTableCell>
+                  <StyledTableCell align="center">{inquiry.inquiry_name}</StyledTableCell>
+                  <StyledTableCell align="center">{inquiry.inquiry_status}</StyledTableCell>
                   <StyledTableCell align="center">
                     {new Date(inquiry.inquiry_date).toLocaleDateString()}
                   </StyledTableCell>
@@ -80,6 +85,7 @@ const InquiryData: React.FC<InquiryArrProps> = ({ data }) => {
                       gap: 2,
                     }}
                   >
+                    <ViewInquiry data={[inquiry]}/>
                     <Button 
                       onClick={() => delInquiry(inquiry.inquiry_id)}
                       variant="outlined" 
