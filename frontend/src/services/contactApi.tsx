@@ -30,3 +30,14 @@ export const postInquiry = async (data: { inquiry_name: string; inquiry_email: s
     throw error; 
   }
 };
+
+// DELETE INQUIRY
+export const deleteInquiry = async (id : number) => {
+  try {
+    const response = await apiClient.delete(`/inquiries/delete/${id}`);
+    return response.data; 
+  } catch (error) {
+    console.error('Error while posting inquiry:', error);
+    throw error; 
+  }
+};
