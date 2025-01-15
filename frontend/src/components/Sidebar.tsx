@@ -20,6 +20,7 @@ const Menus: Menu[] = [
   { name: 'Dashboard', icon: <HomeIcon/>, path: '/dashboard' },
   { name: 'Books', icon: <BookIcon/>, path: '/products' },
   { name: 'Request', icon: <SendIcon/>, path: '/request' },
+  { name: 'Inquiry', icon: <SendIcon/>, path: '/inquiry' },
   { name: 'News', icon: <NewspaperIcon/>, path: '/news' },
   { name: 'Reports', icon: <PieChartIcon/>, path: '/reports' },
 ];

@@ -30,6 +30,18 @@ export const insertRequest = async (data: { book_id: string; fullname: string; r
   }
 };
 
+// UPDATE REQUEST
+export const updateRequest = async (id : number) => {
+  try {
+    const response = await apiClient.patch(`/request/update/${id}`);
+    return response.data; 
+  } catch (error) {
+    console.error('Error updating request:', error);
+    throw error; 
+  }
+
+}
+
 // DELETE REQUEST
 export const deleteRequest = async ({ id }: { id: number }) => {
   try {

@@ -7,6 +7,7 @@ export interface Request extends Book {
     phone_number: string;
     request_date: Date;
     request_message : string;
+    request_status: string;
 }
 export interface RequestArrProps {
     data: Request[];

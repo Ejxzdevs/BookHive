@@ -1,9 +1,9 @@
 import { Container, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
-import {  RequestArrProps} from '../../types/requestInterface'
-import ViewRequest from '../modals/ViewRequest';
-import { deleteRequest , updateRequest } from '../../services/requestApi'; 
+import {  InquiryArrProps } from '../../types/inquiryInterface'
+import { deleteInquiry } from '../../services/contactApi'
+import ViewInquiry from '../modals/ViewInquiry';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -30,28 +30,18 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
-const RequestData: React.FC<RequestArrProps> = ({ data }) => {
+const InquiryData: React.FC<InquiryArrProps> = ({ data }) => {
 
-  const delRequest = async (id: number) => {
-      try {
-        const response = await deleteRequest({id});
-        console.log('Request deleted successfully:', response);
+  const delInquiry = async (id : number) => {
+    try {
+       const response = await deleteInquiry(id);
+        console.log('News deleted successfully:', response);
         window.location.reload();
-      } catch (error) {
-        console.error('Error deleting Request:', error);
-      }
-    };
+    } catch (error) {
+      console.log('error while deleting request', error)
+    }
 
-  const approve = async (id: number)=>{
-      try {
-        const response = await updateRequest(id);
-        console.log('Request updated successfully:', response);
-        window.location.reload();
-      } catch (error) {
-        console.error('Error updating Request:', error);
-      }
   }
-
   
   return (
     <Container className="py-8 overflow-y-auto">
@@ -60,16 +50,16 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
           <TableHead>
             <TableRow>
                 <TableCell align="center" >
-                    ID
+                     ID
                 </TableCell>
                 <TableCell align="center" >
-                    Fullname
-                </TableCell>
-                <TableCell align="center" >
-                    Date
+                    name
                 </TableCell>
                 <TableCell align="center" >
                     Status
+                </TableCell>
+                <TableCell align="center" >
+                    Date
                 </TableCell>
                 <TableCell align="center" >
                     Action
@@ -77,15 +67,15 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((request) => {
+            {data.map((inquiry) => {
               return (
-                <StyledTableRow key={request.request_id}>
-                  <StyledTableCell align="center">{request.request_id}</StyledTableCell>
-                  <StyledTableCell align="center">{request.fullname}</StyledTableCell>
+                <StyledTableRow key={inquiry.inquiry_id}>
+                  <StyledTableCell align="center">{inquiry.inquiry_id}</StyledTableCell>
+                  <StyledTableCell align="center">{inquiry.inquiry_name}</StyledTableCell>
+                  <StyledTableCell align="center">{inquiry.inquiry_status}</StyledTableCell>
                   <StyledTableCell align="center">
-                    {new Date(request.request_date).toLocaleDateString()}
+                    {new Date(inquiry.inquiry_date).toLocaleDateString()}
                   </StyledTableCell>
-                  <StyledTableCell align="center">{request.request_status}</StyledTableCell>
                   <StyledTableCell
                     sx={{
                       display: 'flex',
@@ -95,16 +85,9 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
                       gap: 2,
                     }}
                   >
-                    <ViewRequest data={[request]} />
+                    <ViewInquiry data={[inquiry]}/>
                     <Button 
-                      onClick={()=> approve(request.request_id)}
-                      variant="outlined" 
-                      sx={{ borderColor: '#19B37E', color: '#19B37E' , padding: 0, textTransform: 'none', width: '60px', height: '30px' }}
-                    >
-                      Approve
-                    </Button>
-                    <Button 
-                      onClick={() => delRequest(request.request_id)} 
+                      onClick={() => delInquiry(inquiry.inquiry_id)}
                       variant="outlined" 
                       color="error" 
                       sx={{ padding: 0, textTransform: 'none', width: '60px', height: '30px' }}
@@ -122,4 +105,4 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
   )
 }
 
-export default RequestData
+export default InquiryData;

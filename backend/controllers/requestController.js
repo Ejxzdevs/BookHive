@@ -25,6 +25,18 @@ class requestController {
         }
     };
 
+    // UPDATE REQUEST
+    updateRequest = async (req, res) => {
+      const id = req.params.id;
+      try {
+        const result = await requestModel.updateRequestStatus(id);
+          res.status(201).json({ message: 'Request updated successfully', result });
+      } catch (error) {
+          res.status(500).json({ error: err.message });
+      }
+    }
+
+
     // DELETE REQUEST
     deleteRequest = async (req , res) => {
       const request_id = req.params.id
