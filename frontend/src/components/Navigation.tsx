@@ -23,7 +23,7 @@ const Navigation = () => {
           BookHive
         </Typography>
         {/* Navigation Links */}
-        <Box sx={{ display: 'flex', gap: 2 }}>
+        <Box sx={{ display: 'flex', gap: 1 }}>
           {Menus.map((menu, index) => (
             <NavLink
               to={menu.path}
