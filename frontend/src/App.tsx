@@ -17,6 +17,7 @@ import Dashboard from './pages/Dashboard';
 import News from './pages/News';
 import Product from './pages/Product';
 import Request from './pages/Request';
+import Inquiry from './pages/Inquiry'
 import Report from './pages/Report'
 import Login from './pages/Login';
 
@@ -52,8 +53,9 @@ function App() {
           {/* ADMIN PANEL */}
           <Route path="/admin" element={<Login/>} />
           <Route path="/dashboard" element={<Dashboard/>} />
-          <Route path="/products" element={<Product/>} />
+          <Route path="/products" element={<Product/>} />Inquiry
           <Route path="/request" element={<Request/>} />
+          <Route path="/inquiry" element={<Inquiry/>} />
           <Route path="/news" element={<News/>} />
           <Route path="/reports" element={<Report/>} />
         </Routes>
