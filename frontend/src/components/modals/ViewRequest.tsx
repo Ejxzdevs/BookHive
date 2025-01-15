@@ -82,21 +82,7 @@ const ViewRequest : React.FC<RequestArrProps> = ({ data }) => {
                 fullWidth
              
             />
-          <Box className="flex flex-row justify-between items-center gap-5 mt-2">
-            <Box>
-              <Typography gutterBottom variant="body1" component="div" sx={{ margin: '0' }}>
-              
-              </Typography>
-              <Typography variant="body2" sx={{ color: 'text.secondary', margin: '0' }}>
-                
-              </Typography>
-            </Box>
-          </Box>
-          <Box>
-            <Typography variant="body1" sx={{ color: 'text.secondary', marginTop: '20px' }}>
         
-            </Typography>
-          </Box>
         </DialogContent>
       </Dialog>
     </Box>
