@@ -31,7 +31,7 @@ const ViewBook : React.FC<FormProps> = ({ data }) => {
         View
       </Button>
       <Dialog open={open} >
-      <Box className="flex justify-between items-end py-3">
+        <Box className="flex justify-between items-end py-3">
           <Typography sx={{marginLeft: 2, fontFamily: 'Inter'}} variant="h5" >
             Book Details
           </Typography>
