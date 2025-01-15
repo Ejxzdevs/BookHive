@@ -1,6 +1,6 @@
 const connect = require('../config/db');
 
-class Book {
+class Request {
 
     static async getAllInquiries() {
         const query = "SELECT * FROM INQUIRIES";
@@ -22,6 +22,18 @@ class Book {
             throw new Error('Error inserting inquiry');
         }
     }
+
+    static async deleteInquiry(id) {
+        const query = "DELETE FROM inquiries WHERE inquiry_id = ? ";
+        const value = [id];
+        try {
+            const [result] = await connect.promise().query(query,value)
+            return result;
+        } catch (error) {
+            console.error('Error deleting request: ', error);
+            throw new Error('Error deleting request');
+        }
+    }
 }
 
-module.exports = Book;
+module.exports = Request;
