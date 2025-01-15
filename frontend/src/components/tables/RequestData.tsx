@@ -3,7 +3,7 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
 import {  RequestArrProps} from '../../types/requestInterface'
 import ViewRequest from '../modals/ViewRequest';
-import { deleteRequest } from '../../services/requestApi'; 
+import { deleteRequest , updateRequest } from '../../services/requestApi'; 
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -42,6 +42,16 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
       }
     };
 
+  const approve = async (id: number)=>{
+      try {
+        const response = await updateRequest(id);
+        console.log('Request updated successfully:', response);
+        window.location.reload();
+      } catch (error) {
+        console.error('Error updating Request:', error);
+      }
+  }
+
   
   return (
     <Container className="py-8 overflow-y-auto">
@@ -50,16 +60,16 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
           <TableHead>
             <TableRow>
                 <TableCell align="center" >
-                    Request ID
+                    ID
                 </TableCell>
                 <TableCell align="center" >
-                    Full Name
-                </TableCell>
-                <TableCell align="center" >
-                    Phone Number
+                    Fullname
                 </TableCell>
                 <TableCell align="center" >
                     Date
+                </TableCell>
+                <TableCell align="center" >
+                    Status
                 </TableCell>
                 <TableCell align="center" >
                     Action
@@ -72,10 +82,10 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
                 <StyledTableRow key={request.request_id}>
                   <StyledTableCell align="center">{request.request_id}</StyledTableCell>
                   <StyledTableCell align="center">{request.fullname}</StyledTableCell>
-                  <StyledTableCell align="center">{request.phone_number}</StyledTableCell>
                   <StyledTableCell align="center">
                     {new Date(request.request_date).toLocaleDateString()}
                   </StyledTableCell>
+                  <StyledTableCell align="center">{request.request_status}</StyledTableCell>
                   <StyledTableCell
                     sx={{
                       display: 'flex',
@@ -86,6 +96,13 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
                     }}
                   >
                     <ViewRequest data={[request]} />
+                    <Button 
+                      onClick={()=> approve(request.request_id)}
+                      variant="outlined" 
+                      sx={{ borderColor: '#19B37E', color: '#19B37E' , padding: 0, textTransform: 'none', width: '60px', height: '30px' }}
+                    >
+                      Approve
+                    </Button>
                     <Button 
                       onClick={() => delRequest(request.request_id)} 
                       variant="outlined" 
