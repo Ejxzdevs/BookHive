@@ -31,6 +31,17 @@ export const postInquiry = async (data: { inquiry_name: string; inquiry_email: s
   }
 };
 
+// UPDATE INQUIRY
+
+export const updateInquiryStatus = async (id : number) => {
+  try {
+    const response = await apiClient.patch(`/inquiries/update/${id}`);
+    return response.data; 
+  } catch (error) {
+    console.log("error while updating inquiry status", error)
+  }
+}
+
 // DELETE INQUIRY
 export const deleteInquiry = async (id : number) => {
   try {
