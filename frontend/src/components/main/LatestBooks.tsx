@@ -13,7 +13,14 @@ const LatestBooks = () => {
     const fetchBooks = async () => {
       try {
         const data = await getAllBooks();
-        setBooks(data);
+        const sortedBooks = data
+          .filter((book: Book) => book.book_status === 'Available')
+          .sort((a: Book, b: Book) => {
+            const dateA = new Date(a.book_release);
+            const dateB = new Date(b.book_release);
+            return dateB.getTime() - dateA.getTime();
+          });
+        setBooks(sortedBooks);
       } catch (err) {
         console.error('Error fetching books:', err);
       }
@@ -26,7 +33,7 @@ const LatestBooks = () => {
   return (
     <Box sx={{ padding: '2rem' , backgroundColor: '#F3F5F9' }}>
           <Grid container spacing={2}>
-            {books.filter((book: Book) => book.book_status === 'Available').slice(0, 6).map((book: Book) =>(
+            {books.slice(0, 5).map((book: Book) =>(
               <Grid size={{ xs: 12, sm: 6, md: 4 }} key={book.book_id} container spacing={2}>
                 <Card sx={{ maxWidth: 330 , Height: 'auto',  boxShadow: 5, paddingY: '10px' }}>
                   <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingX: '15px', paddingY: '5px' }}>
