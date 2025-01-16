@@ -56,10 +56,10 @@ function AddReport() {
                     label="Options"
                     {...register('report_name')}
                     >
-                    <MenuItem value="books">Books</MenuItem>
-                    <MenuItem value="request">Requests</MenuItem>
-                    <MenuItem value="inquiries">Inquiries</MenuItem>
-                    <MenuItem value="news">News</MenuItem>
+                    <MenuItem value="Books">Books</MenuItem>
+                    <MenuItem value="Requests">Requests</MenuItem>
+                    <MenuItem value="Inquiries">Inquiries</MenuItem>
+                    <MenuItem value="News">News</MenuItem>
                 </Select>
                 {errors.report_name && (
                     <FormHelperText>{errors.report_name.message}</FormHelperText>
