@@ -187,7 +187,7 @@ const ViewBookReport: React.FC<ViewBookReportProps> = ({date}) => {
         </Table>
       </TableContainer>
       </Box>
-      <Box className="mt-2 flex justify-end pe-5" >
+      <Box className="mt-2 flex justify-end pe-5 mb-3" >
         <Button onClick={download} variant='outlined' color="primary">DOWNLOAD</Button>
       </Box>
     </Dialog>
