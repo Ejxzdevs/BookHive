@@ -3,6 +3,7 @@ import BookIcon from '@mui/icons-material/Book';
 import { getAllBooks } from '../../services/bookApi';
 import { useEffect, useState } from 'react';
 import { Book } from '../../types/bookInterface';
+import { NavLink } from 'react-router-dom';
 
 const BookQuantities = () => {
     const [books, setBooks] = useState<Book[]>([]);
@@ -23,7 +24,7 @@ const BookQuantities = () => {
     const totalBooks = books.length;
 
   return (
-    <Box className="shadow-md flex flex-row rounded-md border-2 border-[#19B37E] bg-[#FFFFFF] min-h-[120px] w-[270px]" >
+    <Box component={NavLink} to="/products" className="shadow-md flex flex-row rounded-md border-2 border-[#19B37E] bg-[#FFFFFF] min-h-[120px] w-[270px]" >
         <Box className="flex flex-col justify-center ps-7 w-[50%]" >
             <Typography sx={{fontFamily: 'Inter', fontWeight: 500 , marginLeft: 1}} variant="h5" >
                 {totalBooks}
