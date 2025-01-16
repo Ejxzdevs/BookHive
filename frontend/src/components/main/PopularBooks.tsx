@@ -28,7 +28,7 @@ const PopularBooks = () => {
           <Grid container spacing={2}>
         {books.filter((book: Book) => book.book_status === 'Available')
               .sort((a: Book, b: Book) => b.request_count - a.request_count)
-              .slice(0, 6)
+              .slice(0, 3)
               .map((book: Book)  =>(
               <Grid size={{ xs: 12, sm: 6, md: 4 }} key={book.book_id} container spacing={2}>
                 <Card sx={{ maxWidth: 330 , Height: 'auto',  boxShadow: 5, paddingY: '10px' }}>
