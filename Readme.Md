@@ -58,7 +58,7 @@ The library management system streamlines the process, allowing end users to eas
     - login/logout system for admins  
 
 ## Tech Stack 📌
-- **Frontend**: React, Material UI  
+- **Frontend**: React, Material UI, Tailwind
 - **Backend**: Express, Node.js  
 - **Database**: MySQL  
 
