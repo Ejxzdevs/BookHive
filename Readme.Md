@@ -55,7 +55,7 @@ The library management system streamlines the process, allowing end users to eas
     - CRUD operations for creating and managing news updates and public notices  
 
 - **Login/Logout**  
-    - Secure login/logout system for users and admins  
+    - login/logout system for admins  
 
 ## Tech Stack 📌
 - **Frontend**: React, Material UI  
