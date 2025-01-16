@@ -1,8 +1,9 @@
 import { Box , Typography } from '@mui/material'
-import BookIcon from '@mui/icons-material/Book';
 import { getAllReport } from '../../services/reportApi';
 import { useEffect, useState } from 'react';
 import { Report } from '../../types/reportInterface';
+import PieChartIcon from '@mui/icons-material/PieChart';
+import { NavLink } from 'react-router-dom';
 
 const ReportQuantities = () => {
     const [Report, setReport] = useState<Report[]>([]);
@@ -23,7 +24,7 @@ const ReportQuantities = () => {
     const totalReport = Report.length;
 
   return (
-    <Box className="shadow-md flex flex-row rounded-md border-2 border-[#19B37E] bg-[#FFFFFF] min-h-[120px] w-[270px]" >
+    <Box component={NavLink} to="/reports" className="shadow-md flex flex-row rounded-md border-2 border-[#19B37E] bg-[#FFFFFF] min-h-[120px] w-[270px]" >
         <Box className="flex flex-col justify-center ps-7 w-[50%]" >
             <Typography sx={{fontFamily: 'Inter', fontWeight: 500 , marginLeft: 1}} variant="h5" >
                 {totalReport}
@@ -33,7 +34,7 @@ const ReportQuantities = () => {
             </Typography>
         </Box>
         <Box className="flex items-center justify-center ps-7 w-[50%]" >
-            <BookIcon sx={{color: '#19B37E', fontSize: 70 }} />
+            <PieChartIcon sx={{color: '#19B37E', fontSize: 70 }} />
         </Box>
     </Box>
   )

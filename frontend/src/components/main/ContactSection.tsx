@@ -18,6 +18,7 @@ const ContactSection = () => {
       });
 
       console.log('Inquiry added successfully:', response);
+      window.location.reload();
 
     } catch (error) {
       console.error('Error submitting inquiry:', error);

@@ -1,4 +1,4 @@
-import { Dialog , DialogTitle ,  DialogContent , DialogActions , TextField , Button , Box } from "@mui/material"
+import { Dialog , DialogContent , DialogActions , TextField , Button , Box, Typography } from "@mui/material"
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from "react";
 import { FormProps } from '../../types/bookInterface'
@@ -51,22 +51,22 @@ const SendRequest : React.FC<FormProps> = ({ data }) => {
         Book Request
     </Button>
         <Dialog open={open}>
-            <Box className="flex justify-end">
-                <Button className='left-0' color="error" onClick={handleClose}>
-                    <CloseIcon/>
-                </Button>
-            </Box>
-            <DialogTitle className='text-center' >
-                Request for {data[0].book_title}
-            </DialogTitle>
-            <DialogContent>
-            <form className="p-5 flex flex-col gap-5 w-[450px]" 
+          <Box className="flex justify-between items-end py-3">
+            <Typography sx={{marginLeft: 2, fontFamily: 'Inter'}} variant="h5" >
+              {data[0].book_title}
+            </Typography>
+            <Button color="error" onClick={handleClose}>
+              <CloseIcon   />
+            </Button>
+          </Box>
+            <DialogContent sx={{padding: 0}} >
+            <form className="p-5 flex flex-col gap-2 w-[450px]" 
             onSubmit={handleSubmit(onSubmit)}
             >
-                <Box mt={2} display="flex" justifyContent="center">
+                <Box className="rounded-sm">
                 <img
+                  className="max-h-[550px] w-full shadow-lg"
                   src={`http://localhost:8080/${data[0].image_url}`}
-                  style={{ maxWidth: '100%', maxHeight: '200px' }}
                 />
               </Box>
               <TextField
@@ -79,7 +79,7 @@ const SendRequest : React.FC<FormProps> = ({ data }) => {
                     sx={{ display: 'none'}}
                 />
                 <TextField
-                    label="Full Name"
+                    label="Fullname"
                     fullWidth
                     {...register('fullname')}
                     error={!!errors.fullname}

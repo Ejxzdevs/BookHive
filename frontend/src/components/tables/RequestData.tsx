@@ -52,6 +52,15 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
       }
   }
 
+  const sortedData = [...data].sort((a, b) => {
+    const statusOrder = ['Pending', 'Approved'];
+    
+    const statusA = statusOrder.indexOf(a.request_status);
+    const statusB = statusOrder.indexOf(b.request_status);
+
+    return statusA - statusB;
+  });
+
   
   return (
     <Container className="py-8 overflow-y-auto">
@@ -77,7 +86,7 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((request) => {
+            {sortedData.map((request) => {
               return (
                 <StyledTableRow key={request.request_id}>
                   <StyledTableCell align="center">{request.request_id}</StyledTableCell>
@@ -96,12 +105,20 @@ const RequestData: React.FC<RequestArrProps> = ({ data }) => {
                     }}
                   >
                     <ViewRequest data={[request]} />
-                    <Button 
-                      onClick={()=> approve(request.request_id)}
-                      variant="outlined" 
-                      sx={{ borderColor: '#19B37E', color: '#19B37E' , padding: 0, textTransform: 'none', width: '60px', height: '30px' }}
-                    >
-                      Approve
+                    <Button
+                        onClick={request.request_status === "Approved" ? () => approve(request.request_id) : undefined}
+                        variant="outlined"
+                        disabled={request.request_status === "Approved"}
+                        sx={{
+                          borderColor: request.request_status === "Approved" ? 'grey' : '#19B37E',
+                          color: request.request_status === "Approved" ? 'grey' : '#19B37E',
+                          padding: 0,
+                          textTransform: 'none',
+                          width: '60px',
+                          height: '30px'
+                            }}
+                        > 
+                          Approve
                     </Button>
                     <Button 
                       onClick={() => delRequest(request.request_id)} 

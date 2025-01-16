@@ -36,7 +36,7 @@ const Product: React.FC = () => {
         <Header />
         <Box className="flex justify-between items-center pt-5 px-6">
           <Typography sx={{fontFamily: 'Inter' , fontWeight: '500'}} variant="h5" color="initial">
-            Product List
+            Book List
           </Typography>
           <AddBook />
         </Box>

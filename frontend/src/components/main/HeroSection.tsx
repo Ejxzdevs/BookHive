@@ -22,7 +22,9 @@ const HeroSection = () => {
       {/* FOR OVERLAY */}
       <Box className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-70"></Box>
       <Box className="relative z-10 text-white h-auto max-w-[800px]">
-        <Typography  variant="h6">Welcome to [Your System Name], where managing your library is made easier and more efficient. Our system offers key advantages such as seamless book cataloging, real-time loan tracking, streamlined user management, and simplified inventory control. With a user-friendly interface and automated processes, [Your System Name] ensures improved organization, faster operations, and enhanced accessibility for both library staff and patrons</Typography>
+        <Typography sx={{ fontFamily: 'Inter'}} variant="h6">
+        Welcome to BookHive, your go-to platform for all things books. Our system provides an easy way to inquire about books, request books, and browse our entire collection. You can discover popular books, stay updated with the latest releases, and explore all available books to find your next great read. With BookHive, managing your reading experience has never been easier and more enjoyable.
+        </Typography>
       </Box>
 
     </Box>

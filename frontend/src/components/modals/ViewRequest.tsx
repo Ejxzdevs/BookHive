@@ -33,16 +33,23 @@ const ViewRequest : React.FC<RequestArrProps> = ({ data }) => {
         View
       </Button>
       <Dialog open={open} onClose={handleClose} >
-        <Box className="flex justify-end mt-1">
-          <Button className="left-0" color="error" onClick={handleClose}>
-            <CloseIcon />
+        <Box className="flex justify-between items-end py-3">
+          <Typography sx={{marginLeft: 2, fontFamily: 'Inter'}} variant="h5" >
+            Request Details
+          </Typography>
+          <Button color="error" onClick={handleClose}>
+            <CloseIcon/>
           </Button>
         </Box>
-        <DialogContent className='overflow-hidden' >
-        <Box className="w-[500px] flex flex-col gap-1 " sx={{ margin: '0' }} >
-            <Typography className='font-bold' variant="body2">Book: {data[0].book_title}</Typography>
-            <Typography variant="body2">Email: {data[0].request_email}</Typography>
-            <Typography variant="body2" >
+        <DialogContent className='overflow-hidden' sx={{ padding: 0}} >
+        <Box className="ps-4 w-[500px] flex flex-col " sx={{ margin: '0' }} >
+            <Typography sx={{fontFamily: 'Inter'}} variant="body2">
+              Book: {data[0].book_title}
+              </Typography>
+            <Typography sx={{fontFamily: 'Inter'}} variant="body2">
+              Email: {data[0].request_email}
+            </Typography>
+            <Typography sx={{fontFamily: 'Inter'}} variant="body2" >
             Date Request:{" "}
             {data[0].request_date
               ? isNaN(new Date(data[0].request_date).getTime())
@@ -51,13 +58,14 @@ const ViewRequest : React.FC<RequestArrProps> = ({ data }) => {
               : 'No release date'}
             </Typography>
         </Box>
-          <Box className="flex items-center justify-center my-5 overflow-hidden">
+          <Box className="rounded-sm p-4">
             <img
-              className="h-[250px] w-[200px]"
+              className="max-h-[550px] w-full shadow-lg"
               src={`http://localhost:8080/${data[0].image_url}`}
               alt={altText}
             />
           </Box>
+          <Box className="px-4 py-5" >
           <TextField
                 className='pointer-events-none'
                  sx={{
@@ -82,7 +90,7 @@ const ViewRequest : React.FC<RequestArrProps> = ({ data }) => {
                 fullWidth
              
             />
-        
+        </Box>
         </DialogContent>
       </Dialog>
     </Box>
