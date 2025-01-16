@@ -79,7 +79,7 @@ const SendRequest : React.FC<FormProps> = ({ data }) => {
                     sx={{ display: 'none'}}
                 />
                 <TextField
-                    label="Full Name"
+                    label="Fullname"
                     fullWidth
                     {...register('fullname')}
                     error={!!errors.fullname}
