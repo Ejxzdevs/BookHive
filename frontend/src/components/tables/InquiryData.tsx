@@ -42,6 +42,15 @@ const InquiryData: React.FC<InquiryArrProps> = ({ data }) => {
     }
 
   }
+
+  const sortedData = [...data].sort((a, b) => {
+    const statusOrder = ['Pending', 'Read'];
+    
+    const statusA = statusOrder.indexOf(a.inquiry_status);
+    const statusB = statusOrder.indexOf(b.inquiry_status);
+
+    return statusA - statusB;
+  });
   
   return (
     <Container className="py-8 overflow-y-auto">
@@ -67,7 +76,7 @@ const InquiryData: React.FC<InquiryArrProps> = ({ data }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((inquiry) => {
+            {sortedData.map((inquiry) => {
               return (
                 <StyledTableRow key={inquiry.inquiry_id}>
                   <StyledTableCell align="center">{inquiry.inquiry_id}</StyledTableCell>
