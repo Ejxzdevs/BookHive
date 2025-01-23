@@ -4,6 +4,7 @@
 
 The library management system streamlines the process, allowing end users to easily view available books, as well as the latest and most popular titles. Users can send requests for books they wish to read and submit inquiries related to the library. On the admin side, the system provides tools to manage all books, handle user inquiries, and oversee book requests. Additionally, the admin can generate detailed reports, access a comprehensive dashboard to analyze data, and create public notices or news updates about the library, ensuring effective communication with users.
 
+## Sample Website Design Highlight
 ![Library Management System](LibraryManagementSystem.png)
 
 ## Features 📌
